@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import api from '../../api'; // Update path if needed
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './ViewBlogs.css';
 
 const ViewBlogs = () => {
@@ -12,20 +12,6 @@ const ViewBlogs = () => {
     const containerRef = useRef(null);
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-    // Custom Cyber Toast
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0c',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     useEffect(() => {
         fetchBlogs();
@@ -59,7 +45,7 @@ const ViewBlogs = () => {
             const res = await api.get('/blogs');
             setBlogs(res.data);
         } catch (err) {
-            cyberToast("CRITICAL_ERROR: UNABLE TO CONTACT GLOBAL ARCHIVE.", 'error');
+            toast.error("CRITICAL_ERROR: UNABLE TO CONTACT GLOBAL ARCHIVE.");
         } finally {
             setLoading(false);
         }
@@ -74,7 +60,7 @@ const ViewBlogs = () => {
                     : blog
             ));
         } catch (err) {
-            cyberToast(err.response?.data?.message || "SYSTEM_FAILURE: LIKE_PROTOCOL_ERROR.", 'error');
+            toast.error(err.response?.data?.message || "SYSTEM_FAILURE: LIKE_PROTOCOL_ERROR.");
         }
     };
 
@@ -89,7 +75,6 @@ const ViewBlogs = () => {
 
     return (
         <div className="onyx-vb-container" ref={containerRef}>
-            <Toaster position="top-center" reverseOrder={false} />
 
             {/* HEADER */}
             <div className="onyx-vb-header">

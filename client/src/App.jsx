@@ -21,47 +21,49 @@ import NavigationHandler from './NavigationHandler'
 function App() {
   return (
     <Router>
-      <NavigationHandler/>
+      <NavigationHandler />
       <Toaster
         position="top-center"
         toastOptions={{
+          duration: 4000,
           style: {
             background: '#0a0a0c',
             color: '#00f3ff',
-            border: '1px solid rgba(0, 243, 255, 0.2)',
-            borderRadius: '0',
-            fontFamily: "'Rajdhani', sans-serif",
+            border: '1px solid #00f3ff',
+            borderRadius: '4px',
+            fontFamily: "'Orbitron', sans-serif",
             textTransform: 'uppercase',
             letterSpacing: '1px',
-            fontSize: '0.9rem',
-            padding: '16px',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+            fontSize: '0.85rem',
+            padding: '12px 20px',
+            boxShadow: '0 0 20px rgba(0, 243, 255, 0.15)'
           },
           success: {
             iconTheme: {
               primary: '#00f3ff',
-              secondary: '#111',
+              secondary: '#0a0a0c',
             },
           },
           error: {
             iconTheme: {
               primary: '#ff003c',
-              secondary: '#111',
+              secondary: '#0a0a0c',
             },
             style: {
-              border: '1px solid rgba(255, 0, 60, 0.2)',
-              color: '#ff003c'
+              border: '1px solid #ff003c',
+              color: '#ff003c',
+              boxShadow: '0 0 20px rgba(255, 0, 60, 0.15)'
             }
           }
         }}
       />
       <Routes>
-        <Route path="/" element={[<CyberNavbar/>,<LandingPage />]} />
-        <Route path="/about" element={[<CyberNavbar/>,<About />]}/>
-        <Route path="/archive" element={[<CyberNavbar/>,<Archive />]}/>
-        <Route path="/login" element={[<CyberNavbar/>,<Login />]}/>
-        <Route path="/register" element={[<CyberNavbar/>,<Register />]}/>
-        <Route path="/forgot-password" element={[<CyberNavbar/>,<ForgotPassword />]}/>
+        <Route path="/" element={[<CyberNavbar />, <LandingPage />]} />
+        <Route path="/about" element={[<CyberNavbar />, <About />]} />
+        <Route path="/archive" element={[<CyberNavbar />, <Archive />]} />
+        <Route path="/login" element={[<CyberNavbar />, <Login />]} />
+        <Route path="/register" element={[<CyberNavbar />, <Register />]} />
+        <Route path="/forgot-password" element={[<CyberNavbar />, <ForgotPassword />]} />
         <Route path="/dashboard" element={[<UserLayout><UserDashBoard /></UserLayout>]} />
         <Route path="/profile" element={<UserLayout><Profile /></UserLayout>} />
         <Route path="/add-blog" element={<UserLayout><AddBlog /></UserLayout>} />

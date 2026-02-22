@@ -138,10 +138,10 @@ const ForgotPassword = () => {
                         </div>
 
                         {step === 1 && (
-                            <form className="forgot-pass-form" onSubmit={handleSendOTP}>
+                            <form className="forgot-pass-form" onSubmit={handleSendOTP} autoComplete="off">
                                 <div className="forgot-pass-input-group">
                                     <label>NETWORK_EMAIL</label>
-                                    <input type="email" placeholder="player@gamerlog.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                    <input type="email" placeholder="player@gamerlog.com" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="off" spellCheck="false" required />
                                     <div className="forgot-pass-glitch-border" />
                                 </div>
                                 <div className="forgot-pass-actions">
@@ -154,10 +154,10 @@ const ForgotPassword = () => {
                         )}
 
                         {step === 2 && (
-                            <form className="forgot-pass-form" onSubmit={handleVerifyOTP}>
+                            <form className="forgot-pass-form" onSubmit={handleVerifyOTP} autoComplete="off">
                                 <div className="forgot-pass-input-group">
                                     <label>ACCESS_KEY</label>
-                                    <input type="text" maxLength="6" className="forgot-pass-otp-input" placeholder="000000" value={otp} onChange={(e) => setOtp(e.target.value)} required />
+                                    <input type="text" maxLength="6" className="forgot-pass-otp-input" placeholder="000000" value={otp} onChange={(e) => setOtp(e.target.value)} autoComplete="one-time-code" spellCheck="false" required />
                                     <div className="forgot-pass-glitch-border" />
                                 </div>
                                 <div className="forgot-pass-actions">
@@ -170,11 +170,11 @@ const ForgotPassword = () => {
                         )}
 
                         {step === 3 && (
-                            <form className="forgot-pass-form" onSubmit={handleResetPassword}>
+                            <form className="forgot-pass-form" onSubmit={handleResetPassword} autoComplete="off">
                                 <div className="forgot-pass-input-group">
                                     <label>NEW_PASSWORD</label>
                                     <div className="forgot-pass-input-wrapper">
-                                        <input type={showPassword ? "text" : "password"} placeholder="••••••••" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                                        <input type={showPassword ? "text" : "password"} placeholder="••••••••" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} autoComplete="new-password" spellCheck="false" required />
                                         <button type="button" className="forgot-pass-toggle-eye" onClick={() => setShowPassword(!showPassword)}>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 {showPassword ? (
@@ -191,7 +191,7 @@ const ForgotPassword = () => {
                                 <div className="forgot-pass-input-group" style={{ marginTop: '20px' }}>
                                     <label>CONFIRM_NEW_PASSWORD</label>
                                     <div className="forgot-pass-input-wrapper">
-                                        <input type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+                                        <input type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} autoComplete="new-password" spellCheck="false" required />
                                         <button type="button" className="forgot-pass-toggle-eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 {showConfirmPassword ? (

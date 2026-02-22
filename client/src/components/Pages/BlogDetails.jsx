@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import api from '../../api'; 
-import toast, { Toaster } from 'react-hot-toast';
+import api from '../../api';
+import toast from 'react-hot-toast';
 import './BlogDetails.css';
 
 const BlogDetails = () => {
@@ -15,19 +15,6 @@ const BlogDetails = () => {
     const [loading, setLoading] = useState(true);
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0c',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     useEffect(() => {
         fetchBlogDetails();
@@ -40,7 +27,7 @@ const BlogDetails = () => {
             const res = await api.get(`/blog/${id}`);
             setBlog(res.data);
         } catch (err) {
-            cyberToast("SYSTEM_FAILURE: LOG ACCESS DENIED OR FILE CORRUPTED.", 'error');
+            toast.error("SYSTEM_FAILURE: LOG ACCESS DENIED OR FILE CORRUPTED.");
             navigate('/view-blogs');
         } finally {
             setLoading(false);
@@ -57,7 +44,7 @@ const BlogDetails = () => {
                     : blog.likes.filter(l => l !== currentUser.id)
             });
         } catch (err) {
-            cyberToast(err.response?.data?.message || "LIKE_PROTOCOL_ERROR.", 'error');
+            toast.error(err.response?.data?.message || "LIKE_PROTOCOL_ERROR.");
         }
     };
 
@@ -74,7 +61,7 @@ const BlogDetails = () => {
 
     return (
         <div className="onyx-bd-container" ref={containerRef}>
-            <Toaster position="top-center" reverseOrder={false} />
+
 
             <button className="onyx-bd-back-btn" onClick={() => navigate(-1)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

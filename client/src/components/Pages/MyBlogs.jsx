@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import api from '../../api';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -16,20 +16,6 @@ const MyBlogs = () => {
     // Modal State
     const [deleteModal, setDeleteModal] = useState({ show: false, blogId: null });
 
-    // Custom Cyber Toast
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0c',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     // useGSAP(() => {
     //     if (!loading) {
@@ -78,7 +64,7 @@ const MyBlogs = () => {
             const myLogs = res.data.filter(blog => (blog.author?._id || blog.author) === currentUserId);
             setBlogs(myLogs);
         } catch (err) {
-            cyberToast("SYSTEM_FAILURE: UNABLE TO RETRIEVE PERSONAL ARCHIVES.", "error");
+            toast.error("CRITICAL_ERROR: UNABLE TO CONTACT ARCHIVE.");
         } finally {
             setLoading(false);
         }
@@ -101,11 +87,11 @@ const MyBlogs = () => {
                 duration: 0.4,
                 onComplete: () => {
                     setBlogs(blogs.filter(blog => blog._id !== id));
-                    cyberToast("DELETED SUCCESSFULLY", "success");
+                    toast.success("SYSTEM: LOG DELETED PERMANENTLY.");
                 }
             });
         } catch (err) {
-            cyberToast(err.response?.data?.message || "DELETION_FAILED: AUTH_REQUIRED.", "error");
+            toast.error(err.response?.data?.message || "DELETION FAILED: SECURITY_OVERRIDE_REQUIRED.");
         }
     };
 
@@ -121,7 +107,6 @@ const MyBlogs = () => {
 
     return (
         <div className="onyx-mb-container" ref={containerRef}>
-            <Toaster position="top-center" reverseOrder={false} />
 
             <div className="onyx-mb-header">
                 <div>

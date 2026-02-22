@@ -43,6 +43,7 @@ const Shuffle = ({
   const hoverHandlerRef = useRef(null);
 
   useEffect(() => {
+    // Check if fonts are loaded to prevent layout shift during animation calculation
     if ('fonts' in document) {
       if (document.fonts.status === 'loaded') setFontsLoaded(true);
       else document.fonts.ready.then(() => setFontsLoaded(true));
@@ -68,7 +69,6 @@ const Shuffle = ({
       }
 
       const el = ref.current;
-
       const start = scrollTriggerStart;
 
       const removeHover = () => {
@@ -103,12 +103,13 @@ const Shuffle = ({
       const build = () => {
         teardown();
 
+        // Initialize SplitText
         splitRef.current = new GSAPSplitText(el, {
           type: 'chars',
           charsClass: 'shuffle-char',
           wordsClass: 'shuffle-word',
           linesClass: 'shuffle-line',
-          smartWrap: true,
+          smartWrap: true, // Critical for responsive wrapping
           reduceWhiteSpace: false
         });
 
@@ -122,24 +123,22 @@ const Shuffle = ({
           const parent = ch.parentElement;
           if (!parent) return;
 
+          // Get dimensions for calculations
           const w = ch.getBoundingClientRect().width;
           const h = ch.getBoundingClientRect().height;
-          if (!w) return;
+          // Skip invisible chars (like spaces that wrapped oddly)
+          if (!w && ch.textContent.trim() !== '') return;
 
           const wrap = document.createElement('span');
+          wrap.classList.add('shuffle-char-wrapper'); // Added class for CSS control
           Object.assign(wrap.style, {
-            display: 'inline-block',
-            overflow: 'hidden',
             width: w + 'px',
             height: shuffleDirection === 'up' || shuffleDirection === 'down' ? h + 'px' : 'auto',
-            verticalAlign: 'bottom'
           });
 
           const inner = document.createElement('span');
           Object.assign(inner.style, {
-            display: 'inline-block',
             whiteSpace: shuffleDirection === 'up' || shuffleDirection === 'down' ? 'normal' : 'nowrap',
-            willChange: 'transform'
           });
 
           parent.insertBefore(wrap, ch);
@@ -381,6 +380,7 @@ const Shuffle = ({
     }
   );
 
+  // Merge the responsive styles with any custom styles passed in props
   const commonStyle = useMemo(() => ({ textAlign, ...style }), [textAlign, style]);
 
   const classes = useMemo(() => `shuffle-parent ${ready ? 'is-ready' : ''} ${className}`, [ready, className]);

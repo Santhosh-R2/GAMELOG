@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import api from '../../api';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './AddBlog.css';
 
 const AddBlog = () => {
@@ -40,19 +40,6 @@ const AddBlog = () => {
             ease: 'power2.out'
         });
     }, { scope: containerRef });
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0c',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -62,10 +49,10 @@ const AddBlog = () => {
         const file = e.target.files[0];
         if (file) {
             if (!file.type.startsWith('image/')) {
-                return cyberToast('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.', 'error');
+                return toast.error('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.');
             }
             if (file.size > 5 * 1024 * 1024) {
-                return cyberToast('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.', 'error');
+                return toast.error('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.');
             }
 
             const reader = new FileReader();
@@ -81,18 +68,18 @@ const AddBlog = () => {
         e.preventDefault();
 
         if (!formData.gameImage) {
-            return cyberToast("SYSTEM_ERROR: GAME_IMAGE IS REQUIRED FOR TRANSMISSION.", 'error');
+            return toast.error("SYSTEM_ERROR: GAME_IMAGE IS REQUIRED FOR TRANSMISSION.");
         }
 
         setLoading(true);
         try {
             await api.post('/blog', formData);
-            cyberToast('ADDED SUCCESSFULLY', 'success');
+            toast.success('ADDED SUCCESSFULLY');
             setTimeout(() => {
                 navigate('/view-blogs');
             }, 1500);
         } catch (err) {
-            cyberToast(err.response?.data?.message || 'TRANSMISSION FAILED: NETWORK_ERROR.', 'error');
+            toast.error(err.response?.data?.message || 'TRANSMISSION FAILED: NETWORK_ERROR.');
         } finally {
             setLoading(false);
         }
@@ -100,7 +87,7 @@ const AddBlog = () => {
 
     return (
         <div className="onyx-ab-container" ref={containerRef}>
-            <Toaster position="top-center" reverseOrder={false} />
+
 
             <div className="onyx-ab-card">
                 <div className="onyx-ab-header onyx-ab-anim">
@@ -113,7 +100,7 @@ const AddBlog = () => {
                     </div>
                 </div>
 
-                <form className="onyx-ab-form" onSubmit={handleSubmit}>
+                <form className="onyx-ab-form" onSubmit={handleSubmit} autoComplete="off">
                     <div className="onyx-ab-upload-zone onyx-ab-anim">
                         <div className={`onyx-ab-drop-area ${previewImg ? 'has-image' : ''}`}>
                             {previewImg ? (
@@ -152,6 +139,8 @@ const AddBlog = () => {
                                     value={formData.title}
                                     onChange={handleChange}
                                     placeholder="Enter Mission or Review Name..."
+                                    autoComplete="off"
+                                    spellCheck="false"
                                     required
                                 />
                                 <span className="onyx-ab-highlight"></span>
@@ -166,6 +155,8 @@ const AddBlog = () => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     placeholder="Input detailed reconnaissance data, strategy guides, or review logs..."
+                                    autoComplete="off"
+                                    spellCheck="false"
                                     required
                                     rows="6"
                                 ></textarea>

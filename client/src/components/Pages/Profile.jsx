@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api'; // Update path if needed
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './Profile.css';
 
 const Profile = () => {
@@ -32,20 +32,6 @@ const Profile = () => {
         }
     }, []);
 
-    // --- CUSTOM CYBER TOAST NOTIFICATIONS ---
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0a',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     // --- STRICT REAL-TIME VALIDATIONS ---
     const handleNameChange = (e) => {
@@ -94,7 +80,7 @@ const Profile = () => {
 
         // Final Pre-Submit Checks
         if (userData.phone.length !== 10) {
-            cyberToast('COMM-LINK ERROR: PHONE MUST BE EXACTLY 10 DIGITS.', 'error');
+            return toast.error('COMM-LINK ERROR: PHONE NUMBER MUST BE 10 DIGITS.');
             return;
         }
 
@@ -104,13 +90,13 @@ const Profile = () => {
             // Sync local storage with actual server response
             localStorage.setItem('user', JSON.stringify(res.data.user));
 
-            cyberToast('SYSTEM: PROFILE DATA ENCRYPTED AND UPDATED.', 'success');
+            toast.success('SYSTEM: PROFILE SYNCHRONIZED SUCCESSFULLY.');
 
             // Broadcast event for real-time UI synchronization
             window.dispatchEvent(new CustomEvent('profileUpdated', { detail: res.data.user }));
 
         } catch (err) {
-            cyberToast(err.response?.data?.message || 'CRITICAL_ERROR: UPDATE FAILED.', 'error');
+            toast.error(err.response?.data?.message || 'CRITICAL_ERROR: UPDATE FAILED.');
         } finally {
             setLoading(false);
         }
@@ -118,8 +104,6 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            {/* Added Toaster for notifications */}
-            <Toaster position="top-center" reverseOrder={false} />
 
             <div className="profile-glass-card">
 
@@ -130,7 +114,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <form className="profile-form" onSubmit={handleSubmit}>
+                <form className="profile-form" onSubmit={handleSubmit} autoComplete="off">
 
                     {/* Avatar Section */}
                     <div className="avatar-upload-section">
@@ -161,7 +145,7 @@ const Profile = () => {
                         <div className="input-group">
                             <label>ALIAS (A-Z ONLY)</label>
                             <div className="input-wrapper">
-                                <input type="text" name="name" value={userData.name} onChange={handleNameChange} placeholder="Enter your display name" required />
+                                <input type="text" name="name" value={userData.name} onChange={handleNameChange} placeholder="Enter your display name" autoComplete="off" spellCheck="false" required />
                                 <span className="input-highlight"></span>
                             </div>
                         </div>
@@ -169,7 +153,7 @@ const Profile = () => {
                         <div className="input-group">
                             <label>NETWORK_ID (EMAIL)</label>
                             <div className="input-wrapper">
-                                <input type="email" name="email" value={userData.email} onChange={handleChange} required placeholder="email@example.com" />
+                                <input type="email" name="email" value={userData.email} onChange={handleChange} required placeholder="email@example.com" autoComplete="off" spellCheck="false" />
                                 <span className="input-highlight"></span>
                             </div>
                         </div>
@@ -177,7 +161,7 @@ const Profile = () => {
                         <div className="input-group">
                             <label>COMMS_ID (10 DIGITS)</label>
                             <div className="input-wrapper">
-                                <input type="text" name="phone" value={userData.phone} onChange={handlePhoneChange} placeholder="0000000000" required />
+                                <input type="text" name="phone" value={userData.phone} onChange={handlePhoneChange} placeholder="0000000000" autoComplete="off" spellCheck="false" required />
                                 <span className="input-highlight"></span>
                             </div>
                         </div>

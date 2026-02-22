@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import api from '../../api'; // Update path if needed
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import './EditBlog.css';
 
 const EditBlog = () => {
@@ -25,20 +25,6 @@ const EditBlog = () => {
 
     const [previewImg, setPreviewImg] = useState('');
 
-    // Custom Cyber Toast
-    const cyberToast = (message, type = 'success') => {
-        toast[type](message, {
-            style: {
-                borderRadius: '4px',
-                background: '#0a0a0c',
-                border: `1px solid ${type === 'success' ? '#00f3ff' : '#ff3333'}`,
-                color: type === 'success' ? '#00f3ff' : '#ff3333',
-                fontFamily: '"Orbitron", sans-serif',
-                letterSpacing: '1px',
-                boxShadow: `0 0 15px ${type === 'success' ? 'rgba(0, 243, 255, 0.2)' : 'rgba(255, 51, 51, 0.2)'}`
-            },
-        });
-    };
 
     useEffect(() => {
         fetchBlog();
@@ -82,7 +68,7 @@ const EditBlog = () => {
             });
             setPreviewImg(blog.gameImage);
         } catch (err) {
-            cyberToast("SYSTEM_ERROR: UNABLE TO LOAD LOG.", 'error');
+            toast.error("SYSTEM_ERROR: UNABLE TO LOAD LOG.");
             navigate('/my-blogs');
         } finally {
             setFetching(false);
@@ -98,10 +84,10 @@ const EditBlog = () => {
         if (file) {
             // Professional Validation
             if (!file.type.startsWith('image/')) {
-                return cyberToast('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.', 'error');
+                return toast.error('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.');
             }
             if (file.size > 5 * 1024 * 1024) {
-                return cyberToast('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.', 'error');
+                return toast.error('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.');
             }
 
             const reader = new FileReader();
@@ -117,18 +103,18 @@ const EditBlog = () => {
         e.preventDefault();
 
         if (!formData.gameImage) {
-            return cyberToast("SYSTEM_ERROR: GAME_IMAGE IS REQUIRED.", 'error');
+            return toast.error("SYSTEM_ERROR: GAME_IMAGE IS REQUIRED.");
         }
 
         setLoading(true);
         try {
             await api.put(`/blog/${id}`, formData);
-            cyberToast('SYSTEM: LOG UPDATED SUCCESSFULLY.', 'success');
+            toast.success('SYSTEM: LOG UPDATED SUCCESSFULLY.');
             setTimeout(() => {
                 navigate(`/blog/${id}`);
             }, 1500);
         } catch (err) {
-            cyberToast(err.response?.data?.message || 'UPDATE FAILED: SECURITY_OVERRIDE_REQUIRED.', 'error');
+            toast.error(err.response?.data?.message || 'UPDATE FAILED: SECURITY_OVERRIDE_REQUIRED.');
         } finally {
             setLoading(false);
         }
@@ -146,7 +132,6 @@ const EditBlog = () => {
 
     return (
         <div className="onyx-eb-container" ref={containerRef}>
-            <Toaster position="top-center" reverseOrder={false} />
 
             <div className="onyx-eb-card">
 
@@ -161,7 +146,7 @@ const EditBlog = () => {
                     </div>
                 </div>
 
-                <form className="onyx-eb-form" onSubmit={handleSubmit}>
+                <form className="onyx-eb-form" onSubmit={handleSubmit} autoComplete="off">
 
                     {/* Image Upload Zone */}
                     <div className="onyx-eb-upload-zone onyx-eb-anim">
@@ -202,6 +187,8 @@ const EditBlog = () => {
                                     name="title"
                                     value={formData.title}
                                     onChange={handleChange}
+                                    autoComplete="off"
+                                    spellCheck="false"
                                     required
                                 />
                                 <span className="onyx-eb-highlight"></span>
@@ -215,6 +202,8 @@ const EditBlog = () => {
                                     name="description"
                                     value={formData.description}
                                     onChange={handleChange}
+                                    autoComplete="off"
+                                    spellCheck="false"
                                     required
                                     rows="6"
                                 ></textarea>

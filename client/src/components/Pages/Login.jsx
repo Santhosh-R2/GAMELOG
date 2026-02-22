@@ -69,7 +69,7 @@ const Login = () => {
             <p className="login-subtitle">Enter your credentials to access the network.</p>
           </div>
 
-          <form className="login-form" onSubmit={handleSubmit}>
+          <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
 
             {/* Email Input */}
             <div className="login-input-group login-anim-item">
@@ -82,6 +82,8 @@ const Login = () => {
                   placeholder="player_one@network.com"
                   value={formData.email}
                   onChange={handleChange}
+                  autoComplete="off"
+                  spellCheck="false"
                   required
                 />
                 <span className="login-input-highlight"></span>
@@ -99,6 +101,8 @@ const Login = () => {
                   placeholder="••••••••••••"
                   value={formData.password}
                   onChange={handleChange}
+                  autoComplete="current-password"
+                  spellCheck="false"
                   required
                 />
                 <span className="login-input-highlight"></span>

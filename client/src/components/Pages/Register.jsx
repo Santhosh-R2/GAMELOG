@@ -133,14 +133,14 @@ const Register = () => {
 
 
         {/* --- SECTION 3: 2-COLUMN INPUT GRID --- */}
-        <form className="register-data-form" onSubmit={handleSubmit}>
+        <form className="register-data-form" onSubmit={handleSubmit} autoComplete="off">
           <div className="register-2col-grid">
 
             {/* ROW: Name & Phone */}
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">PLAYER ALIAS</label>
               <div className="register-field-wrapper">
-                <input type="text" name="name" value={formData.name} onChange={handleNameChange} className="register-text-input" placeholder="Letters only" required />
+                <input type="text" name="name" value={formData.name} onChange={handleNameChange} className="register-text-input" placeholder="Letters only" autoComplete="off" spellCheck="false" required />
                 <div className="register-input-border"></div>
               </div>
             </div>
@@ -148,7 +148,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">COMM-LINK (PHONE)</label>
               <div className="register-field-wrapper">
-                <input type="text" name="phone" value={formData.phone} onChange={handlePhoneChange} className="register-text-input" placeholder="10 Digit Number" required />
+                <input type="text" name="phone" value={formData.phone} onChange={handlePhoneChange} className="register-text-input" placeholder="10 Digit Number" autoComplete="off" spellCheck="false" required />
                 <div className="register-input-border"></div>
               </div>
             </div>
@@ -157,7 +157,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">NETWORK ID (EMAIL)</label>
               <div className="register-field-wrapper">
-                <input type="email" name="email" value={formData.email} onChange={handleChange} className="register-text-input" placeholder="player@gamerlog.com" required />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="register-text-input" placeholder="player@gamerlog.com" autoComplete="off" spellCheck="false" required />
                 <div className="register-input-border"></div>
               </div>
             </div>
@@ -180,7 +180,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">ENCRYPTION KEY</label>
               <div className="register-field-wrapper">
-                <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} className="register-text-input register-pad-right" placeholder="Password" required />
+                <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} className="register-text-input register-pad-right" placeholder="Password" autoComplete="new-password" spellCheck="false" required />
                 <div className="register-input-border"></div>
                 <button type="button" className="register-toggle-eye" onClick={() => setShowPassword(!showPassword)}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -198,7 +198,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">CONFIRM KEY</label>
               <div className="register-field-wrapper">
-                <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="register-text-input register-pad-right" placeholder="Confirm Password" required />
+                <input type={showConfirmPassword ? "text" : "password"} name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="register-text-input register-pad-right" placeholder="Confirm Password" autoComplete="new-password" spellCheck="false" required />
                 <div className="register-input-border"></div>
                 <button type="button" className="register-toggle-eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
