@@ -7,7 +7,7 @@ import './LandingPage.css';
 import land1 from '../../assets/land1.jpg';
 import land2 from '../../assets/land2.jpg';
 import land3 from '../../assets/land3.jpg';
-import video from '../../assets/video.mp4';
+import video from '../../assets/v.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
 
