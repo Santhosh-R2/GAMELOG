@@ -10,7 +10,11 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:5173"], // REPLACE with your actual frontend URL later
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
 
 // Vercel has a payload limit (approx 4.5MB). 
 // 50mb will work locally but fail on Vercel for large images.
