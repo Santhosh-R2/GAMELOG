@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --login-cyan: #00f3ff;
+  --login-cyan-dim: rgba(0, 243, 255, 0.1);
+  --login-bg-dark: #050505;
+  --login-bg-panel: #0a0a0a;
+  --login-text-main: #f0f0f0;
+  --login-text-muted: #888888;
+  --login-border: rgba(255, 255, 255, 0.15);
+}
+
+/* --- MAIN CONTAINER --- */
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--login-bg-dark);
+  color: var(--login-text-main);
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* --- LEFT SIDE: IMAGE --- */
+.login-image-side {
+  flex: 1.2; 
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--login-cyan);
+  box-shadow: 5px 0 30px rgba(0, 243, 255, 0.1);
+}
+
+.login-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(80%) sepia(20%) hue-rotate(180deg) contrast(1.2);
+  transform: scale(1.05); 
+}
+
+.login-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(5,5,5,0.8) 0%, rgba(0, 243, 255, 0.1) 100%);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+  z-index: 1;
+}
+
+.login-hud-top {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--login-cyan);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--login-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--login-cyan);
+  animation: login-blink 2s infinite;
+}
+
+@keyframes login-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.login-hud-bottom {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  z-index: 2;
+}
+
+.login-brand-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0;
+  color: white;
+  letter-spacing: 5px;
+  text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+
+.login-brand-subtitle {
+  font-size: 1.5rem;
+  color: var(--login-cyan);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* --- RIGHT SIDE: FORM --- */
+.login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, var(--login-bg-panel) 0%, var(--login-bg-dark) 100%);
+  padding: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.login-form-box {
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-header {
+  margin-bottom: 10px;
+}
+
+.login-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--login-cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px; 
+  position: relative;
+  top: 20px;
+}
+
+.login-subtitle {
+  color: var(--login-text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Form Inputs */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--login-text-muted);
+  letter-spacing: 1px;
+}
+
+.login-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.login-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--login-border);
+  color: var(--login-text-main);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  padding: 15px 20px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Ensure text doesn't hide behind the eye icon */
+.login-pad-right {
+  padding-right: 50px;
+}
+
+.login-input::placeholder {
+  color: #444;
+}
+
+.login-input:focus {
+  border-color: var(--login-cyan);
+  background: rgba(0, 243, 255, 0.02);
+  box-shadow: 0 0 15px var(--login-cyan-dim) inset;
+}
+
+/* Glowing line under input on focus */
+.login-input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--login-cyan);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px var(--login-cyan);
+}
+
+.login-input:focus ~ .login-input-highlight {
+  width: 100%;
+}
+
+/* SVG Eye Toggle Button */
+.login-toggle-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--login-text-muted);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.login-toggle-eye:hover {
+  color: var(--login-cyan);
+}
+
+.login-toggle-eye svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Options (Checkbox & Forgot Password) */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -5px;
+}
+
+.login-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--login-text-muted);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.login-checkbox {
+  display: none; /* Hide default checkbox */
+}
+
+/* Custom Checkbox */
+.login-checkbox-custom {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--login-border);
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.login-checkbox:checked + .login-checkbox-custom {
+  background-color: var(--login-cyan);
+  border-color: var(--login-cyan);
+  box-shadow: 0 0 10px var(--login-cyan);
+}
+
+.login-forgot-link {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--login-cyan);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.login-forgot-link:hover {
+  color: white;
+  text-shadow: 0 0 10px var(--login-cyan);
+}
+
+/* Submit Button */
+.login-submit-btn {
+  margin-top: 15px;
+  background: transparent;
+  color: var(--login-cyan);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 18px 0;
+  border: 2px solid var(--login-cyan);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.login-submit-btn:hover:not(:disabled) {
+  background: var(--login-cyan);
+  color: #000;
+  box-shadow: 0 0 25px var(--login-cyan);
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  clip-path: none;
+}
+
+/* Footer (Sign Up) */
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  border-top: 1px solid var(--login-border);
+  padding-top: 20px;
+}
+
+.login-footer-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  color: var(--login-text-muted);
+  letter-spacing: 1px;
+}
+
+.login-signup-link {
+  color: var(--login-cyan);
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+}
+
+.login-signup-link:hover {
+  color: white;
+  text-shadow: 0 0 10px var(--login-cyan);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 960px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-image-side {
+    display: none; 
+  }
+
+  .login-form-side {
+    padding: 20px;
+    background-image: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)), url('../../assets/login.jpg');
+    background-size: cover;
+    background-position: center;
+    top: 0;
+  }
+  
+  .login-form-box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px 30px;
+    border: 1px solid var(--login-cyan);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  }
+}

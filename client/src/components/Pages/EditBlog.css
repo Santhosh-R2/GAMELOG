@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --eb-cyan: #00f3ff;
+  --eb-cyan-dim: rgba(0, 243, 255, 0.1);
+  --eb-alert: #ffaa00; 
+  --eb-bg-deep: #050505;
+  --eb-bg-card: rgba(12, 12, 14, 0.9);
+  --eb-bg-input: rgba(20, 20, 24, 0.6);
+  --eb-border: rgba(255, 255, 255, 0.1);
+  --eb-text-main: #f0f0f0;
+  --eb-text-muted: #888888;
+}
+
+.onyx-eb-loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    background-color: var(--eb-bg-deep);
+    gap: 20px;
+}
+
+.onyx-eb-scanner {
+    width: 200px;
+    height: 2px;
+    background: var(--eb-cyan);
+    box-shadow: 0 0 15px var(--eb-cyan);
+    animation: eb-scan-line 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes eb-scan-line {
+    0% { transform: translateY(-30px); opacity: 0.2; }
+    100% { transform: translateY(30px); opacity: 1; }
+}
+
+.onyx-eb-loader-text {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--eb-cyan);
+    letter-spacing: 4px;
+    font-size: 1.2rem;
+    animation: eb-pulse-text 1.5s infinite;
+}
+
+@keyframes eb-pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.onyx-eb-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 80px);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--eb-text-main);
+}
+
+.onyx-eb-card {
+    background: var(--eb-bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--eb-border);
+    border-top: 3px solid var(--eb-alert);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    padding: 50px 60px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 170, 0, 0.03);
+}
+
+.onyx-eb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--eb-border);
+}
+
+.onyx-eb-sys-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: var(--eb-alert);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.onyx-eb-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 2px;
+    color: var(--eb-text-main);
+}
+
+.onyx-eb-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--eb-text-muted);
+    letter-spacing: 1px;
+}
+
+.onyx-eb-dot {
+    width: 8px; height: 8px;
+    background-color: var(--eb-alert);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+    animation: eb-blink 2s infinite;
+}
+
+@keyframes eb-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.onyx-eb-upload-zone {
+    margin-bottom: 40px;
+}
+
+.onyx-eb-drop-area {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: var(--eb-bg-input);
+    border: 2px dashed var(--eb-border);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.onyx-eb-drop-area:hover {
+    border-color: var(--eb-cyan);
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.onyx-eb-drop-area.has-image {
+    border-style: solid;
+    border-color: var(--eb-border);
+}
+
+.onyx-eb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--eb-text-muted);
+    gap: 12px;
+    pointer-events: none;
+}
+
+.onyx-eb-placeholder svg {
+    width: 40px; height: 40px;
+    color: var(--eb-cyan);
+    opacity: 0.8;
+}
+
+.onyx-eb-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.onyx-eb-file-input {
+    display: none;
+}
+
+.onyx-eb-upload-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--eb-cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.onyx-eb-drop-area:hover .onyx-eb-upload-overlay {
+    opacity: 1;
+}
+
+.onyx-eb-drop-area:hover .onyx-eb-preview-img {
+    filter: blur(3px) brightness(0.5);
+}
+
+.onyx-eb-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.onyx-eb-grid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.onyx-eb-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.onyx-eb-input-group label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--eb-text-muted);
+    letter-spacing: 1.5px;
+}
+
+.onyx-eb-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.onyx-eb-input-wrapper input,
+.onyx-eb-input-wrapper textarea,
+.onyx-eb-input-wrapper select {
+    width: 100%;
+    background: var(--eb-bg-input);
+    border: 1px solid var(--eb-border);
+    padding: 16px 20px;
+    color: var(--eb-text-main);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.onyx-eb-input-wrapper input::placeholder,
+.onyx-eb-input-wrapper textarea::placeholder {
+    color: #555;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.onyx-eb-input-wrapper input:focus,
+.onyx-eb-input-wrapper textarea:focus,
+.onyx-eb-input-wrapper select:focus {
+    background: rgba(0, 243, 255, 0.02);
+    border-color: rgba(0, 243, 255, 0.4);
+}
+
+.onyx-eb-highlight {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--eb-cyan);
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px var(--eb-cyan);
+}
+
+.onyx-eb-input-wrapper input:focus ~ .onyx-eb-highlight,
+.onyx-eb-input-wrapper textarea:focus ~ .onyx-eb-highlight,
+.onyx-eb-input-wrapper select:focus ~ .onyx-eb-highlight {
+    width: 100%;
+}
+
+.onyx-eb-input-wrapper select {
+    appearance: none;
+    cursor: pointer;
+}
+.onyx-eb-input-wrapper select option {
+    background: #111;
+}
+
+.onyx-eb-select-icon {
+    position: absolute;
+    right: 15px; top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    color: var(--eb-text-muted);
+    pointer-events: none;
+}
+
+.onyx-eb-rating-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.onyx-eb-stars-container {
+    display: flex;
+    gap: 12px;
+}
+
+.onyx-eb-star {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--eb-text-muted);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.onyx-eb-star svg {
+    width: 35px;
+    height: 35px;
+}
+
+.onyx-eb-star:hover {
+    transform: scale(1.2);
+    color: var(--eb-cyan);
+}
+
+.onyx-eb-star.filled {
+    color: var(--eb-cyan);
+    filter: drop-shadow(0 0 8px var(--eb-cyan-dim));
+}
+
+.onyx-eb-rating-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--eb-cyan);
+    opacity: 0.8;
+}
+
+.onyx-eb-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--eb-border);
+}
+
+.onyx-eb-btn-abort,
+.onyx-eb-btn-transmit {
+    padding: 16px 40px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.onyx-eb-btn-abort {
+    background: transparent;
+    color: var(--eb-text-main);
+    border: 1px solid var(--eb-border);
+    border-radius: 4px;
+}
+
+.onyx-eb-btn-abort:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #666;
+}
+
+.onyx-eb-btn-transmit {
+    background: var(--eb-cyan-dim);
+    color: var(--eb-cyan);
+    border: 1px solid var(--eb-cyan);
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.onyx-eb-btn-transmit:hover:not(:disabled) {
+    background: var(--eb-cyan);
+    color: #000;
+    box-shadow: 0 0 25px var(--eb-cyan);
+    transform: translateY(-2px);
+}
+
+.onyx-eb-btn-transmit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    clip-path: none;
+    border-radius: 4px;
+}
+
+@media (max-width: 800px) {
+    .onyx-eb-card {
+        padding: 40px 25px;
+    }
+    
+    .onyx-eb-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .onyx-eb-title {
+        font-size: 1.6rem;
+    }
+
+    .onyx-eb-grid-row {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .onyx-eb-actions {
+        flex-direction: column-reverse;
+    }
+
+    .onyx-eb-btn-abort,
+    .onyx-eb-btn-transmit {
+        width: 100%;
+        text-align: center;
+    }
+}

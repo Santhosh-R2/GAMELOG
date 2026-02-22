@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --cyber-primary: #00f3ff;
+  --cyber-secondary: #7000ff;
+  --cyber-bg: rgba(10, 10, 10, 0.95);
+  --cyber-text: #ececec;
+}
+
+.nav-navbar {
+  background: var(--cyber-bg) !important;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+  box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.nav-link-container {
+  position: relative;
+  margin: 0 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyber-text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+    transform: skew(-20deg);
+  border: 1px solid transparent;
+}
+
+.nav-link span {
+  display: block;
+  transform: skew(20deg);
+}
+
+.nav-link:hover {
+  color: #000 !important;
+  background: var(--cyber-primary) !important;
+  box-shadow: 0 0 15px var(--cyber-primary) !important;
+  border: 1px solid var(--cyber-primary) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--cyber-primary);
+  transition: width 0.3s ease;
+  transform: skew(20deg);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+.nav-login-btn {
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 2px !important;
+  color: var(--cyber-primary) !important;
+  background: transparent !important;
+  border: 1px solid var(--cyber-primary) !important;
+  padding: 8px 30px !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease !important;
+    clip-path: polygon(
+    10px 0, 100% 0, 
+    100% calc(100% - 10px), 
+    calc(100% - 10px) 100%, 
+    0 100%, 
+    0 10px
+  );
+}
+
+.nav-login-btn:hover {
+  background: var(--cyber-primary) !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px var(--cyber-primary), inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.nav-login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.nav-login-btn:hover::before {
+  left: 100%;
+}

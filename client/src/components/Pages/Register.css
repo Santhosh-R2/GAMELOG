@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --register-cyan: #00f3ff;
+  --register-cyan-glow: rgba(0, 243, 255, 0.2);
+  --register-bg-deep: #030303;
+  --register-bg-card: rgba(12, 12, 12, 0.95);
+  --register-text-light: #f5f5f5;
+  --register-text-dim: #888888;
+  --register-border-line: rgba(255, 255, 255, 0.1);
+  --register-error-color: #ff2a2a;
+}
+
+/* --- MAIN VIEWPORT --- */
+.register-viewport {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--register-bg-deep);
+  background-image: radial-gradient(circle at center, #111 0%, var(--register-bg-deep) 100%);
+  color: var(--register-text-light);
+  font-family: 'Rajdhani', sans-serif;
+  padding: 60px 20px;
+}
+
+/* --- MAIN CARD --- */
+.register-console-card {
+  width: 100%;
+  max-width: 900px;
+  background: var(--register-bg-card);
+  border: 1px solid var(--register-border-line);
+  border-top: 3px solid var(--register-cyan);
+  border-radius: 8px;
+  padding: 50px;
+  backdrop-filter: blur(20px);
+  /* Added inner glow for depth */
+  box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 40px rgba(0, 243, 255, 0.03) inset; 
+}
+
+/* --- HEADER --- */
+.register-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.register-sys-tag {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: var(--register-cyan);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.register-main-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+/* --- PROFILE UPLOAD (PERFECTLY CENTERED) --- */
+.register-avatar-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--register-border-line);
+}
+
+.register-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-upload-label {
+  position: relative;
+  cursor: pointer;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.02);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--register-border-line);
+  transition: transform 0.3s ease;
+}
+
+.register-upload-label:hover .register-avatar-preview {
+  transform: scale(1.05);
+  border-color: var(--register-cyan);
+}
+
+.register-avatar-ring {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  border: 2px dashed var(--register-cyan);
+  border-radius: 50%;
+  animation: register-spin 12s linear infinite;
+  opacity: 0.4;
+  z-index: 1;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-upload-label:hover .register-avatar-ring {
+  opacity: 1;
+  box-shadow: 0 0 15px var(--register-cyan);
+}
+
+@keyframes register-spin { 
+  100% { transform: rotate(360deg); } 
+}
+
+.register-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--register-cyan);
+}
+
+.register-upload-placeholder svg {
+  width: 24px;
+  height: 24px;
+}
+
+.register-upload-placeholder span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+}
+
+.register-hidden-file {
+  display: none;
+}
+
+/* --- ERROR BANNER --- */
+.register-error-banner {
+  background: rgba(255, 42, 42, 0.1);
+  border-left: 4px solid var(--register-error-color);
+  color: var(--register-error-color);
+  padding: 12px 20px;
+  margin-bottom: 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* --- 2-COLUMN GRID --- */
+.register-2col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 40px;
+  margin-bottom: 40px;
+}
+
+.register-input-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register-field-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: var(--register-text-dim);
+  letter-spacing: 1px;
+}
+
+.register-field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.register-text-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--register-border-line);
+  border-radius: 4px;
+  color: var(--register-text-light);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.15rem;
+  padding: 15px 18px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.register-text-input::placeholder {
+  color: #555;
+}
+
+.register-text-input:focus {
+  background: rgba(0, 243, 255, 0.02);
+  border-color: rgba(0, 243, 255, 0.4);
+}
+
+/* Make space for the eye icon so text doesn't overlap */
+.register-pad-right {
+  padding-right: 45px;
+}
+
+.register-input-border {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 0; 
+  height: 2px;
+  background: var(--register-cyan);
+  transition: 0.4s width ease;
+  box-shadow: 0 0 10px var(--register-cyan);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.register-text-input:focus ~ .register-input-border {
+  width: 100%;
+}
+
+.register-dropdown {
+  appearance: none;
+  cursor: pointer;
+}
+
+.register-dropdown:invalid {
+  color: var(--register-text-dim);
+}
+
+.register-dropdown option {
+  background-color: var(--register-bg-card);
+  color: var(--register-text-light);
+}
+
+/* SVG Eye Toggle */
+.register-toggle-eye {
+  position: absolute;
+  right: 15px; 
+  top: 50%;
+  transform: translateY(-50%);
+  background: none; 
+  border: none; 
+  color: var(--register-text-dim);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.register-toggle-eye:hover {
+  color: var(--register-cyan);
+}
+
+.register-toggle-eye svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- ACTION AREA --- */
+.register-action-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--register-border-line);
+  padding-top: 40px;
+  gap: 20px;
+}
+
+.register-action-btn {
+  background: var(--register-cyan-glow);
+  color: var(--register-cyan);
+  border: 1px solid var(--register-cyan);
+  padding: 18px 60px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  /* Fixed pixel clip-path for cleaner corners */
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  transition: all 0.3s ease;
+}
+
+.register-action-btn:hover {
+  background: var(--register-cyan);
+  color: black;
+  box-shadow: 0 0 30px var(--register-cyan);
+  transform: translateY(-2px);
+}
+
+.register-login-prompt {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--register-text-dim);
+  letter-spacing: 1px;
+}
+
+.register-login-link {
+  color: var(--register-cyan);
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.register-login-link:hover {
+  color: white;
+  text-shadow: 0 0 10px var(--register-cyan);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+  .register-2col-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .register-console-card {
+    padding: 40px 25px;
+  }
+  .register-action-btn {
+    width: 100%;
+  }
+}
