@@ -16,10 +16,12 @@ import ViewBlogs from './components/Pages/ViewBlogs'
 import MyBlogs from './components/Pages/MyBlogs'
 import BlogDetails from './components/Pages/BlogDetails'
 import EditBlog from './components/Pages/EditBlog'
+import NavigationHandler from './NavigationHandler'
 
 function App() {
   return (
     <Router>
+      <NavigationHandler/>
       <Toaster
         position="top-center"
         toastOptions={{
