@@ -11,67 +11,11 @@ import about3 from '../../assets/about3.jpg';
 import about4 from '../../assets/about4.jpg';
 import about5 from '../../assets/about5.jpg';
 import system from '../../assets/system1.jpg';
-
+import login from '../../assets/login.jpg';
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const containerRef = useRef(null);
-  useGSAP(() => {
-    const textBlocks = gsap.utils.toArray('.about-reveal-text');
-    textBlocks.forEach((block) => {
-      gsap.from(block, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: block,
-          start: 'top 85%',
-        }
-      });
-    });
-
-    const titleTimeline = gsap.timeline();
-    titleTimeline
-      .from('.about-massive-title .char', {
-        opacity: 0,
-        y: 100,
-        rotateX: -90,
-        stagger: 0.05,
-        duration: 0.8,
-        ease: 'back.out(1.7)'
-      })
-      .from('.about-cyber-badge', {
-        width: 0,
-        opacity: 0,
-        duration: 1,
-        ease: 'power4.inOut'
-      }, '-=0.5');
-
-    gsap.from('.bento-box', {
-      scale: 0.95,
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'back.out(1.2)',
-      scrollTrigger: {
-        trigger: '.studio-strict-bento',
-        start: 'top 80%',
-      }
-    });
-
-    gsap.to('.about-tech-parallax-img', {
-      yPercent: 20,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.about-tech-architecture',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-  }, { scope: containerRef });
 
   const splitText = (text) => {
     return text.split('').map((char, index) => (
@@ -156,7 +100,7 @@ const About = () => {
           </div>
 
           <div className="bento-box bento-img-square">
-            <img src={system} alt="Architecture" loading="lazy" />
+            <img src={login} alt="Architecture" loading="lazy" />
           </div>
           <div className="bento-box bento-text-wide">
             <div className="bento-text-content">
