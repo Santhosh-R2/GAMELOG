@@ -71,6 +71,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('SECURITY ERROR: INVALID NETWORK ID. ONLY GMAIL.COM IS ALLOWED.');
+      setLoading(false);
+      return;
+    }
+
     if (formData.phone.length !== 10) {
       toast.error('COMM-LINK ERROR: PHONE NUMBER MUST BE 10 DIGITS.');
       setLoading(false);
@@ -140,7 +147,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">PLAYER ALIAS</label>
               <div className="register-field-wrapper">
-                <input type="text" name="name" value={formData.name} onChange={handleNameChange} className="register-text-input" placeholder="Letters only" autoComplete="off" spellCheck="false" required />
+                <input type="text" name="name" value={formData.name} onChange={handleNameChange} className="register-text-input" placeholder="Enter Username" autoComplete="off" spellCheck="false" required />
                 <div className="register-input-border"></div>
               </div>
             </div>
@@ -148,7 +155,7 @@ const Register = () => {
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">COMM-LINK (PHONE)</label>
               <div className="register-field-wrapper">
-                <input type="text" name="phone" value={formData.phone} onChange={handlePhoneChange} className="register-text-input" placeholder="10 Digit Number" autoComplete="off" spellCheck="false" required />
+                <input type="text" name="phone" value={formData.phone} onChange={handlePhoneChange} className="register-text-input" placeholder="Enter Phone Number" autoComplete="off" spellCheck="false" required />
                 <div className="register-input-border"></div>
               </div>
             </div>
