@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import Shuffle from '../common/Shuffle'; // Ensure this path is correct for your project
+import Shuffle from '../common/Shuffle';
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
@@ -73,7 +73,13 @@ const Register = () => {
     setLoading(true);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!emailRegex.test(formData.email)) {
-      toast.error('SECURITY ERROR: INVALID NETWORK ID. ONLY GMAIL.COM IS ALLOWED.');
+      toast.error('ONLY GMAIL.COM IS ALLOWED.');
+      setLoading(false);
+      return;
+    }
+
+    if (!profilePic) {
+      toast.error('SECURITY ERROR: PROFILE PICTURE IS MANDATORY.');
       setLoading(false);
       return;
     }
