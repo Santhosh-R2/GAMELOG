@@ -21,7 +21,7 @@ import NavigationHandler from './NavigationHandler'
 function App() {
   return (
     <Router>
-      <NavigationHandler />
+      {/* <NavigationHandler /> */}
       <Toaster
         position="top-center"
         toastOptions={{
@@ -68,9 +68,7 @@ function App() {
         <Route path="/profile" element={<UserLayout><Profile /></UserLayout>} />
         <Route path="/add-blog" element={<UserLayout><AddBlog /></UserLayout>} />
         <Route path="/view-blogs" element={<UserLayout><ViewBlogs /></UserLayout>} />
-        <Route path="/my-blogs" element={<UserLayout><MyBlogs /></UserLayout>} />
         <Route path="/blog/:id" element={<UserLayout><BlogDetails /></UserLayout>} />
-        <Route path="/edit-blog/:id" element={<UserLayout><EditBlog /></UserLayout>} />
       </Routes>
     </Router>
   )
