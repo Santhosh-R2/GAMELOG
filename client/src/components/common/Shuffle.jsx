@@ -43,7 +43,6 @@ const Shuffle = ({
   const hoverHandlerRef = useRef(null);
 
   useEffect(() => {
-    // Check if fonts are loaded to prevent layout shift during animation calculation
     if ('fonts' in document) {
       if (document.fonts.status === 'loaded') setFontsLoaded(true);
       else document.fonts.ready.then(() => setFontsLoaded(true));
@@ -94,7 +93,6 @@ const Shuffle = ({
         try {
           splitRef.current?.revert();
         } catch {
-          /* noop */
         }
         splitRef.current = null;
         playingRef.current = false;
@@ -103,13 +101,12 @@ const Shuffle = ({
       const build = () => {
         teardown();
 
-        // Initialize SplitText
         splitRef.current = new GSAPSplitText(el, {
           type: 'chars',
           charsClass: 'shuffle-char',
           wordsClass: 'shuffle-word',
           linesClass: 'shuffle-line',
-          smartWrap: true, // Critical for responsive wrapping
+          smartWrap: true, 
           reduceWhiteSpace: false
         });
 
@@ -123,14 +120,12 @@ const Shuffle = ({
           const parent = ch.parentElement;
           if (!parent) return;
 
-          // Get dimensions for calculations
           const w = ch.getBoundingClientRect().width;
           const h = ch.getBoundingClientRect().height;
-          // Skip invisible chars (like spaces that wrapped oddly)
           if (!w && ch.textContent.trim() !== '') return;
 
           const wrap = document.createElement('span');
-          wrap.classList.add('shuffle-char-wrapper'); // Added class for CSS control
+          wrap.classList.add('shuffle-char-wrapper'); 
           Object.assign(wrap.style, {
             width: w + 'px',
             height: shuffleDirection === 'up' || shuffleDirection === 'down' ? h + 'px' : 'auto',
@@ -380,7 +375,6 @@ const Shuffle = ({
     }
   );
 
-  // Merge the responsive styles with any custom styles passed in props
   const commonStyle = useMemo(() => ({ textAlign, ...style }), [textAlign, style]);
 
   const classes = useMemo(() => `shuffle-parent ${ready ? 'is-ready' : ''} ${className}`, [ready, className]);

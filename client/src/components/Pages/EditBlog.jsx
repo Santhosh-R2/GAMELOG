@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import api from '../../api'; // Update path if needed
+import api from '../../api'; 
 import toast from 'react-hot-toast';
 import './EditBlog.css';
 
@@ -32,7 +32,6 @@ const EditBlog = () => {
 
     useGSAP(() => {
         if (!fetching) {
-            // Smooth entry animation for the main card once data is loaded
             gsap.from('.onyx-eb-card', {
                 y: 40,
                 opacity: 0,
@@ -40,7 +39,6 @@ const EditBlog = () => {
                 ease: 'power3.out'
             });
 
-            // Staggered reveal for form elements
             gsap.from('.onyx-eb-anim', {
                 y: 20,
                 opacity: 0,
@@ -54,7 +52,6 @@ const EditBlog = () => {
 
     const fetchBlog = async () => {
         try {
-            // Optional: Mock delay for the cool scanning effect
             await new Promise(r => setTimeout(r, 800));
             const res = await api.get(`/blog/${id}`);
             const blog = res.data;
@@ -82,7 +79,6 @@ const EditBlog = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Professional Validation
             if (!file.type.startsWith('image/')) {
                 return toast.error('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.');
             }
@@ -120,7 +116,6 @@ const EditBlog = () => {
         }
     };
 
-    // --- Loading State (Terminal Scanner) ---
     if (fetching) {
         return (
             <div className="onyx-eb-loader-container">
@@ -134,8 +129,6 @@ const EditBlog = () => {
         <div className="onyx-eb-container" ref={containerRef}>
 
             <div className="onyx-eb-card">
-
-                {/* Header */}
                 <div className="onyx-eb-header onyx-eb-anim">
                     <div>
                         <div className="onyx-eb-sys-tag">EDIT MODE: ACTIVE</div>
@@ -148,7 +141,6 @@ const EditBlog = () => {
 
                 <form className="onyx-eb-form" onSubmit={handleSubmit} autoComplete="off">
 
-                    {/* Image Upload Zone */}
                     <div className="onyx-eb-upload-zone onyx-eb-anim">
                         <div className={`onyx-eb-drop-area ${previewImg ? 'has-image' : ''}`}>
                             {previewImg ? (
@@ -176,7 +168,6 @@ const EditBlog = () => {
                         </div>
                     </div>
 
-                    {/* Form Fields */}
                     <div className="onyx-eb-fields">
 
                         <div className="onyx-eb-input-group onyx-eb-anim">
@@ -247,7 +238,6 @@ const EditBlog = () => {
 
                         </div>
 
-                        {/* GAME RATING (5 STARS) */}
                         <div className="onyx-eb-rating-group onyx-eb-anim">
                             <label>MISSION_EVALUATION (RATING)</label>
                             <div className="onyx-eb-stars-container">
@@ -272,7 +262,6 @@ const EditBlog = () => {
                         </div>
                     </div>
 
-                    {/* Actions */}
                     <div className="onyx-eb-actions onyx-eb-anim">
                         <button type="button" className="onyx-eb-btn-abort" onClick={() => navigate('/my-blogs')}>
                             CANCEL_EDITS

@@ -17,7 +17,6 @@
     font-family: 'Rajdhani', sans-serif;
 }
 
-/* --- MAIN CARD --- */
 .profile-glass-card {
     background: linear-gradient(145deg, rgba(15, 15, 18, 0.8), rgba(5, 5, 5, 0.95));
     backdrop-filter: blur(25px);
@@ -32,7 +31,6 @@
     animation: profile-slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Cyber Corner Accents */
 .profile-glass-card::before,
 .profile-glass-card::after {
     content: '';
@@ -58,7 +56,6 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- HEADER --- */
 .profile-header {
     display: flex;
     justify-content: space-between;
@@ -104,7 +101,6 @@
     50% { opacity: 0.3; }
 }
 
-/* --- AVATAR SECTION --- */
 .avatar-upload-section {
     display: flex;
     justify-content: center;
@@ -192,7 +188,6 @@
     letter-spacing: 1px;
 }
 
-/* --- FORM GRID & INPUTS --- */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -242,7 +237,6 @@
     border-color: rgba(0, 243, 255, 0.4);
 }
 
-/* Input Glowing Bottom Border */
 .input-highlight {
     position: absolute;
     bottom: 0; left: 0;
@@ -258,7 +252,6 @@
     width: 100%;
 }
 
-/* Disabled Input (Email) */
 .disabled-input {
     background: repeating-linear-gradient(
         -45deg,
@@ -272,7 +265,6 @@
     border-color: #222 !important;
 }
 
-/* Custom Select Dropdown */
 .select-wrapper select {
     appearance: none;
     cursor: pointer;
@@ -293,7 +285,6 @@
     pointer-events: none;
 }
 
-/* --- ACTIONS (BUTTONS) --- */
 .profile-actions {
     display: flex;
     justify-content: flex-end;
@@ -316,7 +307,6 @@
     background: var(--profile-cyan-dim);
     color: var(--profile-cyan);
     border: 1px solid var(--profile-cyan);
-    /* Cyberpunk cut corner */
     clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
 }
 
@@ -346,7 +336,6 @@
     border-color: #666;
 }
 
-/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 850px) {
     .profile-glass-card {
         padding: 40px 30px;

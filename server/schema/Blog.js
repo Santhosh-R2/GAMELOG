@@ -10,7 +10,7 @@ const blogSchema = new mongoose.Schema({
         required: true,
     },
     gameImage: {
-        type: String, // Base64 string
+        type: String, 
         required: true,
     },
     gameCategory: {

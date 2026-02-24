@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import Shuffle from '../common/Shuffle';
 import api from '../../api';
 import './ForgotPassword.css';
+import video from '../../assets/v.mp4';
 
 const ForgotPassword = () => {
     const [step, setStep] = useState(1);
@@ -22,7 +23,6 @@ const ForgotPassword = () => {
     const navigate = useNavigate();
 
     useGSAP(() => {
-        // Initial entrance of the HUD module
         gsap.from('.forgot-pass-card', {
             width: "0%",
             opacity: 0,
@@ -87,18 +87,16 @@ const ForgotPassword = () => {
 
     return (
         <div ref={containerRef} className="forgot-pass-root">
-            {/* FIXED GLOBAL VIDEO BACKGROUND */}
             <div className="forgot-pass-bg-viewport">
                 <div className="forgot-pass-video-overlay" />
                 <video autoPlay loop muted playsInline className="forgot-pass-bg-video">
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-different-futuristic-scenes-34442-large.mp4" type="video/mp4" />
+                    <source src={video} type="video/mp4" />
                 </video>
             </div>
 
             <main className="forgot-pass-wrapper">
                 <div className="forgot-pass-card">
 
-                    {/* LEFT: TACTICAL PROGRESS SIDEBAR */}
                     <aside className="forgot-pass-sidebar forgot-pass-anim">
                         <div className="forgot-pass-sidebar-header">
                             <div className="forgot-pass-pulse" />
@@ -124,7 +122,6 @@ const ForgotPassword = () => {
                         </div>
                     </aside>
 
-                    {/* RIGHT: OPERATIONAL TERMINAL FORM */}
                     <section className="forgot-pass-terminal forgot-pass-anim">
                         <div className="forgot-pass-terminal-header">
                             <h1 className="forgot-pass-terminal-title">
@@ -215,7 +212,6 @@ const ForgotPassword = () => {
                         )}
                     </section>
 
-                    {/* HUD DECORATIONS */}
                     <div className="forgot-pass-hud-bracket tl" />
                     <div className="forgot-pass-hud-bracket tr" />
                     <div className="forgot-pass-hud-bracket bl" />

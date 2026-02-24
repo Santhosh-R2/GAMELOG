@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api'; // Update path if needed
+import api from '../../api'; 
 import toast from 'react-hot-toast';
 import './Profile.css';
 
@@ -33,15 +33,12 @@ const Profile = () => {
     }, []);
 
 
-    // --- STRICT REAL-TIME VALIDATIONS ---
     const handleNameChange = (e) => {
-        // Allow ONLY alphabets and spaces
         const validatedValue = e.target.value.replace(/[^a-zA-Z ]/g, '');
         setUserData({ ...userData, name: validatedValue });
     };
 
     const handlePhoneChange = (e) => {
-        // Allow ONLY numbers, strictly limited to 10 characters
         const validatedValue = e.target.value.replace(/\D/g, '').slice(0, 10);
         setUserData({ ...userData, phone: validatedValue });
     };
@@ -50,16 +47,13 @@ const Profile = () => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
     };
 
-    // --- AVATAR UPLOAD & VALIDATION ---
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 cyberToast('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.', 'error');
                 return;
             }
-            // Validate file size (Max 5MB)
             if (file.size > 5 * 1024 * 1024) {
                 cyberToast('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.', 'error');
                 return;
@@ -74,11 +68,8 @@ const Profile = () => {
         }
     };
 
-    // --- FORM SUBMIT ---
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Final Pre-Submit Checks
         if (userData.phone.length !== 10) {
             return toast.error('COMM-LINK ERROR: PHONE NUMBER MUST BE 10 DIGITS.');
             return;
@@ -87,12 +78,9 @@ const Profile = () => {
         setLoading(true);
         try {
             const res = await api.put('/profile', userData);
-            // Sync local storage with actual server response
             localStorage.setItem('user', JSON.stringify(res.data.user));
 
             toast.success('SYSTEM: PROFILE SYNCHRONIZED SUCCESSFULLY.');
-
-            // Broadcast event for real-time UI synchronization
             window.dispatchEvent(new CustomEvent('profileUpdated', { detail: res.data.user }));
 
         } catch (err) {
@@ -116,7 +104,6 @@ const Profile = () => {
 
                 <form className="profile-form" onSubmit={handleSubmit} autoComplete="off">
 
-                    {/* Avatar Section */}
                     <div className="avatar-upload-section">
                         <div className="avatar-preview-wrapper">
                             <img
@@ -124,7 +111,6 @@ const Profile = () => {
                                 alt="Avatar"
                                 className="profile-avatar-big"
                             />
-                            {/* Animated spinning ring */}
                             <div className="avatar-spinning-ring"></div>
 
                             <div className="avatar-overlay">
@@ -140,7 +126,6 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Inputs Grid */}
                     <div className="form-grid">
                         <div className="input-group">
                             <label>ALIAS (A-Z ONLY)</label>
@@ -178,7 +163,6 @@ const Profile = () => {
                                     <option value="FPS">FIRST PERSON SHOOTER</option>
                                 </select>
                                 <span className="input-highlight"></span>
-                                {/* Custom Dropdown Arrow */}
                                 <svg className="custom-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
@@ -186,7 +170,6 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="profile-actions">
                         <button type="button" className="btn-secondary" onClick={() => navigate('/dashboard')}>
                             ABORT_CHANGES

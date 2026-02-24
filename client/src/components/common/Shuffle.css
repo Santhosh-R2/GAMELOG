@@ -1,24 +1,17 @@
-/* Shuffle.css */
 
 .shuffle-parent {
   display: inline-block;
   white-space: normal;
-  word-wrap: break-word; /* Ensures long words break on mobile */
+  word-wrap: break-word;
   overflow-wrap: break-word;
   will-change: transform;
-  line-height: 1.1; /* Slightly increased for better readability on multiline */
-  
-  /* FLUID TYPOGRAPHY: 
-     - Minimum: 2rem (32px)
-     - Preferred: 5vw (scales with screen width)
-     - Maximum: 4rem (64px)
-  */
+  line-height: 1.1; 
   font-size: clamp(2rem, 5vw, 4rem); 
   
-  font-family: 'Press Start 2P', sans-serif; /* Or your preferred font */
+  font-family: 'Press Start 2P', sans-serif; 
   text-transform: uppercase;
   visibility: hidden;
-  max-width: 100%; /* Prevents horizontal scrollbar */
+  max-width: 100%; 
 }
 
 .shuffle-parent.is-ready {
@@ -28,7 +21,7 @@
 .shuffle-char-wrapper {
   display: inline-block;
   overflow: hidden;
-  vertical-align: bottom; /* Better alignment for animated characters */
+  vertical-align: bottom; 
   position: relative;
 }
 
@@ -43,24 +36,19 @@
   text-align: center;
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
-
-/* Tablet & Small Laptops */
 @media (max-width: 1024px) {
   .shuffle-parent {
     font-size: clamp(1.8rem, 6vw, 3.5rem);
   }
 }
 
-/* Mobile Phones */
 @media (max-width: 768px) {
   .shuffle-parent {
     font-size: clamp(1.5rem, 8vw, 2.5rem);
-    line-height: 1.2; /* More breathing room on small screens */
+    line-height: 1.2; 
   }
 }
 
-/* Very Small Screens */
 @media (max-width: 380px) {
   .shuffle-parent {
     font-size: 1.2rem; 

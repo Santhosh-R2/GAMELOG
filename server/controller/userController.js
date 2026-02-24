@@ -19,7 +19,7 @@ const register = async (req, res) => {
             email,
             category,
             password: hashedPassword,
-            profilePic // Base64 string
+            profilePic
         });
 
         await user.save();
@@ -50,11 +50,9 @@ const forgotPassword = async (req, res) => {
         const { email } = req.body;
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
-
-        // Generate 6-digit OTP
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         user.otp = otp;
-        user.otpExpires = Date.now() + 3600000; // 1 hour
+        user.otpExpires = Date.now() + 3600000; 
         await user.save();
 
         const transporter = nodemailer.createTransport({
@@ -64,8 +62,6 @@ const forgotPassword = async (req, res) => {
                 pass: process.env.EMAIL_PASS,
             },
         });
-
-        // --- PROFESSIONAL HTML EMAIL TEMPLATE ---
         const emailTemplate = `
         <!DOCTYPE html>
         <html>
@@ -188,11 +184,11 @@ const forgotPassword = async (req, res) => {
         `;
 
         const mailOptions = {
-            from: `"GamerLog Security" <${process.env.EMAIL_USER}>`, // Professional sender name
+            from: `"GamerLog Security" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: 'GamerLog: Password Reset Authorization Code',
-            html: emailTemplate, // Send the HTML template
-            text: `Your GamerLog OTP for password reset is: ${otp}. It will expire in 1 hour.`, // Fallback for clients that block HTML
+            html: emailTemplate, 
+            text: `Your GamerLog OTP for password reset is: ${otp}. It will expire in 1 hour.`,
         };
 
         await transporter.sendMail(mailOptions);
@@ -200,7 +196,6 @@ const forgotPassword = async (req, res) => {
 
     } catch (error) {
         console.error("Forgot Password Error:", error);
-        // Fixed the typo "jso n" to "json" from your code
         res.status(500).json({ message: "Internal server error while sending email." });
     }
 };
@@ -251,7 +246,6 @@ const updateProfile = async (req, res) => {
         const user = await User.findById(userId);
         if (!user) return res.status(404).json({ message: "User not found" });
 
-        // Check for uniqueness if email or phone is being changed
         if (email || phone) {
             const conflictQuery = {
                 _id: { $ne: userId },

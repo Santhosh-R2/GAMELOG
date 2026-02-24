@@ -112,16 +112,12 @@ const Register = () => {
   return (
     <div className="register-viewport" ref={containerRef}>
       <div className="register-console-card">
-
-        {/* --- SECTION 1: HEADER --- */}
         <header className="register-header register-anim-element">
           <div className="register-sys-tag">IDENTITY_INITIALIZATION_v2.0</div>
           <h1 className="register-main-title">
             <Shuffle text="JOIN THE NETWORK" shuffleTimes={4} duration={1} colorTo="#00f3ff" />
           </h1>
         </header>
-
-        {/* --- SECTION 2: FULL WIDTH PROFILE UPLOAD (Centered) --- */}
         <div className="register-avatar-row register-anim-element">
           <div className="register-upload-wrapper">
             <label htmlFor="registerAvatar" className="register-upload-label">
@@ -145,11 +141,9 @@ const Register = () => {
         </div>
 
 
-        {/* --- SECTION 3: 2-COLUMN INPUT GRID --- */}
         <form className="register-data-form" onSubmit={handleSubmit} autoComplete="off">
           <div className="register-2col-grid">
 
-            {/* ROW: Name & Phone */}
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">PLAYER ALIAS</label>
               <div className="register-field-wrapper">
@@ -166,7 +160,6 @@ const Register = () => {
               </div>
             </div>
 
-            {/* ROW: Email & Faction */}
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">NETWORK ID (EMAIL)</label>
               <div className="register-field-wrapper">
@@ -189,7 +182,6 @@ const Register = () => {
               </div>
             </div>
 
-            {/* ROW: Passwords */}
             <div className="register-input-cell register-anim-element">
               <label className="register-field-label">ENCRYPTION KEY</label>
               <div className="register-field-wrapper">

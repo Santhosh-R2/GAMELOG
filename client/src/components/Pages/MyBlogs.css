@@ -3,9 +3,9 @@
 :root {
   --mb-cyan: #00f3ff;
   --mb-cyan-dim: rgba(0, 243, 255, 0.1);
-  --mb-alert: #ffaa00; /* Gold for Edit */
-  --mb-danger: #ff3333; /* Red for Delete */
-  --mb-pink: #ff0055; /* Like color */
+  --mb-alert: #ffaa00; 
+  --mb-danger: #ff3333; 
+  --mb-pink: #ff0055; 
   --mb-bg-deep: #050505;
   --mb-bg-card: rgba(15, 15, 18, 0.85);
   --mb-border: rgba(255, 255, 255, 0.1);
@@ -13,7 +13,6 @@
   --mb-text-muted: #888888;
 }
 
-/* --- MAIN WRAPPER --- */
 .onyx-mb-container {
     padding: 40px;
     max-width: 1600px;
@@ -24,8 +23,6 @@
 }
 
 .text-cyan { color: var(--mb-cyan); }
-
-/* --- LOADER (SCANNING TERMINAL) --- */
 .onyx-mb-loader-container {
     display: flex;
     flex-direction: column;
@@ -58,7 +55,6 @@
 
 @keyframes mb-pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-/* --- HEADER --- */
 .onyx-mb-header {
     display: flex;
     justify-content: space-between;
@@ -106,8 +102,6 @@
     box-shadow: 0 0 8px var(--mb-alert);
 }
 
-
-/* --- EMPTY STATE --- */
 .onyx-mb-empty {
     display: flex;
     flex-direction: column;
@@ -169,15 +163,11 @@
     box-shadow: 0 0 25px var(--mb-cyan);
 }
 
-
-/* --- BLOG GRID --- */
 .onyx-mb-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 40px;
 }
-
-/* --- INDIVIDUAL CARD --- */
 .onyx-mb-card {
     background: var(--mb-bg-card);
     border: 1px solid var(--mb-border);
@@ -196,7 +186,6 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px var(--mb-cyan-dim);
 }
 
-/* Card Image Area */
 .onyx-mb-card-image {
     position: relative;
     width: 100%;
@@ -241,7 +230,6 @@
     backdrop-filter: blur(4px);
 }
 
-/* Card Content Area */
 .onyx-mb-card-content {
     padding: 25px;
     display: flex;
@@ -249,7 +237,6 @@
     flex: 1; 
 }
 
-/* Typography */
 .onyx-mb-blog-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.3rem;
@@ -257,8 +244,6 @@
     margin: 0 0 12px 0;
     color: var(--mb-text-main);
     transition: color 0.3s ease;
-    
-    /* Truncate to 2 lines */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -291,7 +276,6 @@
     flex: 1; 
 }
 
-/* Footer & Actions */
 .onyx-mb-card-footer {
     display: flex;
     justify-content: space-between;
@@ -300,7 +284,6 @@
     padding-top: 20px;
 }
 
-/* Stats Group */
 .onyx-mb-stat-item {
     display: flex;
     align-items: center;
@@ -312,7 +295,6 @@
 }
 .onyx-mb-stat-item svg { width: 16px; height: 16px; }
 
-/* Control Buttons (Edit, Delete, View) */
 .onyx-mb-action-buttons {
     display: flex;
     align-items: center;
@@ -333,21 +315,17 @@
 
 .onyx-mb-icon-btn svg { width: 16px; height: 16px; color: var(--mb-text-muted); transition: color 0.3s; }
 
-/* Edit Hover */
 .onyx-mb-icon-btn.edit:hover {
     border-color: var(--mb-alert);
     background: rgba(255, 170, 0, 0.1);
 }
 .onyx-mb-icon-btn.edit:hover svg { color: var(--mb-alert); }
-
-/* Delete Hover */
 .onyx-mb-icon-btn.delete:hover {
     border-color: var(--mb-danger);
     background: var(--mb-danger-dim);
 }
 .onyx-mb-icon-btn.delete:hover svg { color: var(--mb-danger); }
 
-/* View Button */
 .onyx-mb-btn-view {
     background: var(--mb-cyan-dim);
     border: 1px solid var(--mb-cyan);
@@ -369,7 +347,6 @@
 }
 
 
-/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
     .onyx-mb-container { padding: 20px; }
     
@@ -380,7 +357,7 @@
     }
     
     .onyx-mb-grid {
-        grid-template-columns: 1fr; /* Stack cards on mobile */
+        grid-template-columns: 1fr; 
     }
 
     .onyx-mb-card-footer {
@@ -395,7 +372,6 @@
     }
 }
 
-/* --- DELETE MODAL --- */
 .onyx-mb-modal-overlay {
     position: fixed;
     inset: 0;
@@ -415,7 +391,7 @@
     width: 100%;
     max-width: 550px;
     border-radius: 8px;
-    padding: 2px; /* For the inner glow effect */
+    padding: 2px; 
     overflow: hidden;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 51, 51, 0.1);
     animation: mb-modal-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -534,7 +510,6 @@
     box-shadow: 0 0 25px rgba(255, 51, 51, 0.4);
 }
 
-/* Mobile Adjustments */
 @media (max-width: 500px) {
     .onyx-mb-modal-content {
         padding: 30px 20px;

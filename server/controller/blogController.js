@@ -45,7 +45,6 @@ const updateBlog = async (req, res) => {
 
         if (!blog) return res.status(404).json({ message: "LOG NOT FOUND." });
 
-        // Authorization check
         if (blog.author.toString() !== req.user.id) {
             return res.status(403).json({ message: "UNAUTHORIZED: ACCESS DENIED TO ENCRYPTED LOG." });
         }
@@ -69,7 +68,6 @@ const deleteBlog = async (req, res) => {
         const blog = await Blog.findById(req.params.id);
         if (!blog) return res.status(404).json({ message: "LOG NOT FOUND." });
 
-        // Authorization check
         if (blog.author.toString() !== req.user.id) {
             return res.status(403).json({ message: "UNAUTHORIZED: CANNOT DELETE FOREIGN ARCHIVE." });
         }
@@ -90,12 +88,10 @@ const likeBlog = async (req, res) => {
         const likeIndex = blog.likes.indexOf(userId);
 
         if (likeIndex === -1) {
-            // Like
             blog.likes.push(userId);
             await blog.save();
             res.json({ message: "SYSTEM: ENDORSEMENT RECORDED.", likes: blog.likes.length, isLiked: true });
         } else {
-            // Unlike
             blog.likes.splice(likeIndex, 1);
             await blog.save();
             res.json({ message: "SYSTEM: ENDORSEMENT WITHDRAWN.", likes: blog.likes.length, isLiked: false });

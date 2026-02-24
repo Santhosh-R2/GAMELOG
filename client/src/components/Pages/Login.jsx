@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import Shuffle from '../common/Shuffle'; // Your text animation component
+import Shuffle from '../common/Shuffle';
 import './Login.css';
 import loginImg from '../../assets/login.jpg';
 import { useNavigate, Link } from 'react-router-dom';
@@ -13,8 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // State for Eye Icon
-
+  const [showPassword, setShowPassword] = useState(false); 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -38,8 +37,6 @@ const Login = () => {
 
   return (
     <div className="login-container" ref={containerRef}>
-
-      {/* --- LEFT SIDE: IMAGE --- */}
       <div className="login-image-side">
         <img
           src={loginImg}
@@ -47,8 +44,6 @@ const Login = () => {
           className="login-cover-img"
         />
         <div className="login-image-overlay"></div>
-
-        {/* Decorative HUD Elements over Image */}
         <div className="login-hud-top">
           <span className="login-dot"></span> SECURE CONNECTION
         </div>
@@ -58,7 +53,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* --- RIGHT SIDE: FORM --- */}
       <div className="login-form-side">
         <div className="login-form-box">
 
@@ -71,7 +65,6 @@ const Login = () => {
 
           <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
 
-            {/* Email Input */}
             <div className="login-input-group login-anim-item">
               <label htmlFor="email" className="login-label">EMAIL ADDRESS // ID</label>
               <div className="login-input-wrapper">
@@ -90,7 +83,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Password Input with Eye Icon */}
             <div className="login-input-group login-anim-item">
               <label htmlFor="password" className="login-label">PASSWORD // KEY</label>
               <div className="login-input-wrapper">
@@ -107,7 +99,6 @@ const Login = () => {
                 />
                 <span className="login-input-highlight"></span>
 
-                {/* Eye Icon Button */}
                 <button
                   type="button"
                   className="login-toggle-eye"
@@ -125,7 +116,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Options (Remember me & Forgot Password) */}
             <div className="login-options login-anim-item">
               <label className="login-checkbox-label">
                 <input type="checkbox" className="login-checkbox" />
@@ -141,7 +131,6 @@ const Login = () => {
 
           </form>
 
-          {/* Footer (Sign Up) */}
           <div className="login-footer login-anim-item">
             <p className="login-footer-text">
               NEW TO THE NETWORK? <Link to="/register" className="login-signup-link">CREATE PROFILE</Link>

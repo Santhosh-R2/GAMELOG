@@ -11,7 +11,6 @@
   --vb-text-muted: #888888;
 }
 
-/* --- MAIN WRAPPER --- */
 .onyx-vb-container {
     padding: 40px;
     max-width: 1600px;
@@ -23,7 +22,6 @@
 
 .text-cyan { color: var(--vb-cyan); }
 
-/* --- LOADER --- */
 .onyx-vb-loader-container {
     display: flex;
     flex-direction: column;
@@ -56,7 +54,6 @@
 
 @keyframes pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-/* --- HEADER --- */
 .onyx-vb-header {
     display: flex;
     justify-content: space-between;
@@ -107,7 +104,6 @@
 
 @keyframes blink-live { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-/* --- EMPTY STATE --- */
 .onyx-vb-empty {
     display: flex;
     flex-direction: column;
@@ -137,18 +133,16 @@
     font-size: 1.1rem;
 }
 
-/* --- BLOG GRID --- */
 .onyx-vb-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 40px;
 }
 
-/* --- ANIMATED BORDER CARD WRAPPER --- */
 .onyx-vb-card-wrapper {
     position: relative;
     border-radius: 12px;
-    padding: 2px; /* Border Thickness */
+    padding: 2px; 
     background: var(--vb-bg-card);
     overflow: hidden;
     transition: transform 0.4s ease;
@@ -159,7 +153,6 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--vb-cyan-dim);
 }
 
-/* The Rotating Gradient Border */
 .onyx-vb-animated-border {
     position: absolute;
     top: -50%; left: -50%;
@@ -186,10 +179,9 @@
     100% { transform: rotate(360deg); }
 }
 
-/* --- INDIVIDUAL CARD --- */
 .onyx-vb-card {
     background: var(--vb-bg-card);
-    border-radius: 10px; /* Slightly smaller than wrapper */
+    border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -198,7 +190,6 @@
     height: 100%;
 }
 
-/* Card Image Area */
 .onyx-vb-card-image {
     position: relative;
     width: 100%;
@@ -243,7 +234,6 @@
     backdrop-filter: blur(4px);
 }
 
-/* Card Content Area */
 .onyx-vb-card-content {
     padding: 25px;
     display: flex;
@@ -251,7 +241,6 @@
     flex: 1; 
 }
 
-/* Author Strip */
 .onyx-vb-author-strip {
     display: flex;
     align-items: center;
@@ -288,7 +277,6 @@
     color: var(--vb-text-main);
 }
 
-/* Typography */
 .onyx-vb-blog-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.3rem;
@@ -319,7 +307,6 @@
     color: var(--vb-cyan);
 }
 
-/* Footer & Actions */
 .onyx-vb-card-footer {
     display: flex;
     justify-content: space-between;
@@ -408,7 +395,6 @@
     box-shadow: 0 0 20px var(--vb-cyan-dim);
 }
 
-/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
     .onyx-vb-container { padding: 20px; }
     

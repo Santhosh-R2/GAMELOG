@@ -13,15 +13,12 @@ import UserDashBoard from './components/Pages/UserDashBoard'
 import Profile from './components/Pages/Profile'
 import AddBlog from './components/Pages/AddBlog'
 import ViewBlogs from './components/Pages/ViewBlogs'
-import MyBlogs from './components/Pages/MyBlogs'
 import BlogDetails from './components/Pages/BlogDetails'
-import EditBlog from './components/Pages/EditBlog'
 import NavigationHandler from './NavigationHandler'
 
 function App() {
   return (
     <Router>
-      <NavigationHandler />
       <Toaster
         position="top-center"
         toastOptions={{
@@ -68,9 +65,7 @@ function App() {
         <Route path="/profile" element={<UserLayout><Profile /></UserLayout>} />
         <Route path="/add-blog" element={<UserLayout><AddBlog /></UserLayout>} />
         <Route path="/view-blogs" element={<UserLayout><ViewBlogs /></UserLayout>} />
-        <Route path="/my-blogs" element={<UserLayout><MyBlogs /></UserLayout>} />
         <Route path="/blog/:id" element={<UserLayout><BlogDetails /></UserLayout>} />
-        <Route path="/edit-blog/:id" element={<UserLayout><EditBlog /></UserLayout>} />
       </Routes>
     </Router>
   )

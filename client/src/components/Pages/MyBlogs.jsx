@@ -12,12 +12,10 @@ const MyBlogs = () => {
     const navigate = useNavigate();
     const containerRef = useRef(null);
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
-
-    // Modal State
     const [deleteModal, setDeleteModal] = useState({ show: false, blogId: null });
 
 
-    // useGSAP(() => {
+  
     //     if (!loading) {
     //         // Header animation
     //         gsap.from('.onyx-mb-header', {
@@ -57,7 +55,6 @@ const MyBlogs = () => {
 
     const fetchMyBlogs = async () => {
         try {
-            // Optional: Mock delay for scanning effect
             await new Promise(r => setTimeout(r, 800));
             const res = await api.get('/blogs');
             const currentUserId = currentUser.id || currentUser._id;
@@ -80,7 +77,6 @@ const MyBlogs = () => {
 
         try {
             await api.delete(`/blog/${id}`);
-            // Animate card removal visually before deleting from state
             gsap.to(`#card-${id}`, {
                 scale: 0.8,
                 opacity: 0,
@@ -95,7 +91,6 @@ const MyBlogs = () => {
         }
     };
 
-    // --- Loading State ---
     if (loading) {
         return (
             <div className="onyx-mb-loader-container">
@@ -175,7 +170,6 @@ const MyBlogs = () => {
 
                                     <div className="onyx-mb-action-buttons">
 
-                                        {/* Edit Button */}
                                         <button
                                             className="onyx-mb-icon-btn edit"
                                             onClick={() => navigate(`/edit-blog/${blog._id}`)}
@@ -187,7 +181,6 @@ const MyBlogs = () => {
                                             </svg>
                                         </button>
 
-                                        {/* Delete Button */}
                                         <button
                                             className="onyx-mb-icon-btn delete"
                                             onClick={() => handleDeleteClick(blog._id)}
@@ -199,7 +192,6 @@ const MyBlogs = () => {
                                             </svg>
                                         </button>
 
-                                        {/* Read Button */}
                                         <button
                                             className="onyx-mb-btn-view"
                                             onClick={() => navigate(`/blog/${blog._id}`)}
@@ -214,7 +206,6 @@ const MyBlogs = () => {
                 </div>
             )}
 
-            {/* DELETE MODAL */}
             {deleteModal.show && (
                 <div className="onyx-mb-modal-overlay">
                     <div className="onyx-mb-modal">

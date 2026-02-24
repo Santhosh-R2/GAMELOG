@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     profilePic: {
-        type: String, // Storing Base64 string
+        type: String, 
         default: '',
     },
     otp: {

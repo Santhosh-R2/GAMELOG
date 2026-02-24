@@ -10,7 +10,6 @@
   --login-border: rgba(255, 255, 255, 0.15);
 }
 
-/* --- MAIN CONTAINER --- */
 .login-container {
   display: flex;
   min-height: 100vh;
@@ -25,7 +24,6 @@
   bottom: 0;
 }
 
-/* --- LEFT SIDE: IMAGE --- */
 .login-image-side {
   flex: 1.2; 
   position: relative;
@@ -106,7 +104,6 @@
   text-transform: uppercase;
 }
 
-/* --- RIGHT SIDE: FORM --- */
 .login-form-side {
   flex: 1;
   display: flex;
@@ -145,7 +142,6 @@
   margin: 0;
 }
 
-/* Form Inputs */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -184,7 +180,6 @@
   border-radius: 4px;
 }
 
-/* Ensure text doesn't hide behind the eye icon */
 .login-pad-right {
   padding-right: 50px;
 }
@@ -199,7 +194,6 @@
   box-shadow: 0 0 15px var(--login-cyan-dim) inset;
 }
 
-/* Glowing line under input on focus */
 .login-input-highlight {
   position: absolute;
   bottom: 0;
@@ -215,7 +209,6 @@
   width: 100%;
 }
 
-/* SVG Eye Toggle Button */
 .login-toggle-eye {
   position: absolute;
   right: 15px;
@@ -241,7 +234,6 @@
   height: 20px;
 }
 
-/* Options (Checkbox & Forgot Password) */
 .login-options {
   display: flex;
   justify-content: space-between;
@@ -261,10 +253,9 @@
 }
 
 .login-checkbox {
-  display: none; /* Hide default checkbox */
+  display: none; 
 }
 
-/* Custom Checkbox */
 .login-checkbox-custom {
   width: 16px;
   height: 16px;
@@ -294,7 +285,6 @@
   text-shadow: 0 0 10px var(--login-cyan);
 }
 
-/* Submit Button */
 .login-submit-btn {
   margin-top: 15px;
   background: transparent;
@@ -324,7 +314,6 @@
   clip-path: none;
 }
 
-/* Footer (Sign Up) */
 .login-footer {
   margin-top: 40px;
   text-align: center;
@@ -352,7 +341,6 @@
   text-shadow: 0 0 10px var(--login-cyan);
 }
 
-/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 960px) {
   .login-container {
     flex-direction: column;

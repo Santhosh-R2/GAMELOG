@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import api from '../../api'; // Update path if needed
+import api from '../../api'; 
 import toast from 'react-hot-toast';
 import './ViewBlogs.css';
 
@@ -17,30 +17,8 @@ const ViewBlogs = () => {
         fetchBlogs();
     }, []);
 
-    // useGSAP(() => {
-    //     if (!loading && blogs.length > 0) {
-    //         // Header animation
-    //         gsap.from('.onyx-vb-header', {
-    //             y: -30,
-    //             opacity: 0,
-    //             duration: 0.8,
-    //             ease: 'power3.out'
-    //         });
-
-    //         // Staggered Cards Reveal
-    //         gsap.from('.onyx-vb-card-wrapper', {
-    //             y: 50,
-    //             opacity: 0,
-    //             duration: 0.6,
-    //             stagger: 0.1,
-    //             ease: 'back.out(1.2)'
-    //         });
-    //     }
-    // }, [loading, blogs]);
-
     const fetchBlogs = async () => {
         try {
-            // Mock delay for scanning effect
             await new Promise(r => setTimeout(r, 800));
             const res = await api.get('/blogs');
             setBlogs(res.data);
@@ -76,7 +54,6 @@ const ViewBlogs = () => {
     return (
         <div className="onyx-vb-container" ref={containerRef}>
 
-            {/* HEADER */}
             <div className="onyx-vb-header">
                 <div>
                     <h1 className="onyx-vb-title">GLOBAL_ARCHIVE</h1>
@@ -88,8 +65,6 @@ const ViewBlogs = () => {
                     <span className="onyx-vb-dot"></span> LIVE FEED
                 </div>
             </div>
-
-            {/* EMPTY STATE */}
             {blogs.length === 0 && (
                 <div className="onyx-vb-empty">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -99,29 +74,23 @@ const ViewBlogs = () => {
                     <p>Be the first to transmit a log to the network.</p>
                 </div>
             )}
-
-            {/* BLOG GRID */}
             <div className="onyx-vb-grid">
                 {blogs.map((blog) => {
                     const isLiked = blog.likes?.includes(currentUser.id);
 
                     return (
                         <div className="onyx-vb-card-wrapper" key={blog._id}>
-                            <div className="onyx-vb-animated-border"></div> {/* ROTATING BORDER */}
+                            <div className="onyx-vb-animated-border"></div>
 
                             <div className="onyx-vb-card">
 
-                                {/* Image & Category Overlay */}
                                 <div className="onyx-vb-card-image">
                                     <img src={blog.gameImage || 'https://via.placeholder.com/600x400/111/00f3ff?text=NO+IMAGE'} alt={blog.title} />
                                     <div className="onyx-vb-category-badge">{blog.gameCategory}</div>
                                     <div className="onyx-vb-image-overlay"></div>
                                 </div>
 
-                                {/* Card Content */}
                                 <div className="onyx-vb-card-content">
-
-                                    {/* Author Strip */}
                                     <div className="onyx-vb-author-strip">
                                         <img
                                             src={blog.author?.profilePic || "https://images.unsplash.com/photo-1566411520896-01e7ca4726af?q=80&w=150&auto=format&fit=crop"}
@@ -133,8 +102,6 @@ const ViewBlogs = () => {
                                             <span className="onyx-vb-author-name">{blog.author?.name || "REDACTED"}</span>
                                         </div>
                                     </div>
-
-                                    {/* Text Data */}
                                     {blog.rating > 0 && (
                                         <div className="onyx-vb-rating-stars">
                                             {[1, 2, 3, 4, 5].map((star) => (
@@ -152,8 +119,6 @@ const ViewBlogs = () => {
                                         </div>
                                     )}
                                     <h2 className="onyx-vb-blog-title">{blog.title}</h2>
-
-                                    {/* Footer & Actions */}
                                     <div className="onyx-vb-card-footer">
 
                                         <button
