@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('./controller/userController');
 const blogController = require('./controller/blogController');
+const chatController = require('./controller/chatController');
 const auth = require('./middleware/auth');
 
 router.post('/register', userController.register);
@@ -18,5 +19,11 @@ router.get('/blog/:id', blogController.getSingleBlog);
 router.put('/blog/:id', auth, blogController.updateBlog);
 router.delete('/blog/:id', auth, blogController.deleteBlog);
 router.post('/blog/:id/like', auth, blogController.likeBlog);
+
+router.get('/users', auth, chatController.getUsers);
+router.get('/messages/unread', auth, chatController.getTotalUnread);
+router.get('/messages/:targetUserId', auth, chatController.getMessages);
+router.post('/messages', auth, chatController.sendMessage);
+router.delete('/messages/:targetUserId', auth, chatController.deleteChat);
 
 module.exports = router;

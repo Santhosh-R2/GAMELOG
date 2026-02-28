@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import api from './api';
 import './UserLayout.css';
 
 const UserLayout = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    const [totalUnread, setTotalUnread] = useState(0);
     const navigate = useNavigate();
 
     // Use State for Reactive User Data
@@ -32,6 +34,24 @@ const UserLayout = ({ children }) => {
         return () => window.removeEventListener('profileUpdated', handleUpdate);
     }, []);
 
+    // Polling for global unread messages
+    useEffect(() => {
+        const fetchUnread = async () => {
+            try {
+                if (localStorage.getItem('token')) {
+                    const { data } = await api.get('/messages/unread');
+                    setTotalUnread(data.totalUnread || 0);
+                }
+            } catch (error) {
+                console.error("Failed to fetch unread total", error);
+            }
+        };
+
+        fetchUnread();
+        const interval = setInterval(fetchUnread, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     const user = userData;
 
     const menuItems = [
@@ -54,6 +74,11 @@ const UserLayout = ({ children }) => {
             name: 'MY ARCHIVES',
             path: '/my-blogs',
             icon: <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+        },
+        {
+            name: 'COMMUNICATIONS',
+            path: '/chat',
+            icon: <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         }
     ];
 
@@ -90,11 +115,27 @@ const UserLayout = ({ children }) => {
                                     to={item.path}
                                     className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
                                     onClick={() => setIsSidebarOpen(false)}
+                                    style={{ position: 'relative' }}
                                 >
                                     <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         {item.icon}
                                     </svg>
                                     {item.name}
+                                    {item.name === 'COMMUNICATIONS' && totalUnread > 0 && (
+                                        <span style={{
+                                            position: 'absolute',
+                                            right: '0px',
+                                            backgroundColor: '#ff003c',
+                                            color: '#fff',
+                                            fontSize: '0.7rem',
+                                            fontWeight: 'bold',
+                                            padding: '2px 6px',
+                                            borderRadius: '10px',
+                                            boxShadow: '0 0 10px #ff003c'
+                                        }}>
+                                            {totalUnread}
+                                        </span>
+                                    )}
                                 </NavLink>
                             </li>
                         ))}
