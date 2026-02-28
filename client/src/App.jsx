@@ -17,6 +17,7 @@ import MyBlogs from './components/Pages/MyBlogs'
 import BlogDetails from './components/Pages/BlogDetails'
 import EditBlog from './components/Pages/EditBlog'
 import Chat from './components/Pages/Chat'
+import Games from './components/Pages/Games'
 import NavigationHandler from './NavigationHandler'
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
         <Route path="/blog/:id" element={<UserLayout><BlogDetails /></UserLayout>} />
         <Route path="/edit-blog/:id" element={<UserLayout><EditBlog /></UserLayout>} />
         <Route path="/chat" element={<UserLayout><Chat /></UserLayout>} />
+        <Route path="/games" element={<UserLayout><Games /></UserLayout>} />
       </Routes>
     </Router>
 

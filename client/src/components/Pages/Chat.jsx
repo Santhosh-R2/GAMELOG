@@ -16,7 +16,6 @@ const Chat = () => {
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     const currentUserId = currentUser.id || currentUser._id;
 
-    // --- FETCH USERS ---
     const fetchUsers = async () => {
         try {
             const response = await api.get('/users');
@@ -32,7 +31,6 @@ const Chat = () => {
         fetchUsers();
     }, []);
 
-    // --- FETCH MESSAGES ---
     const fetchMessages = async (userId) => {
         if (!userId) return;
         try {
@@ -50,7 +48,6 @@ const Chat = () => {
         }
     };
 
-    // --- POLLING ---
     useEffect(() => {
         let chatInterval;
         let usersInterval;
@@ -75,12 +72,10 @@ const Chat = () => {
         };
     }, [selectedUser]);
 
-    // --- SCROLL TO BOTTOM ---
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // --- SEND MESSAGE ---
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (!newMessage.trim() || !selectedUser) return;
@@ -98,7 +93,6 @@ const Chat = () => {
         }
     };
 
-    // --- DELETE CHAT ---
     const confirmDeleteChat = async () => {
         if (!selectedUser) return;
 
@@ -116,7 +110,6 @@ const Chat = () => {
     return (
         <div className="user-chat-container">
 
-            {/* --- LEFT SIDEBAR --- */}
             <aside className="user-chat-sidebar">
                 <div className="user-chat-sidebar-header">
                     <h2 className="user-chat-sidebar-title">COMMUNICATIONS</h2>
@@ -159,11 +152,9 @@ const Chat = () => {
                 </div>
             </aside>
 
-            {/* --- RIGHT CHAT AREA --- */}
             <main className="user-chat-main">
                 {selectedUser ? (
                     <>
-                        {/* Header */}
                         <header className="user-chat-header">
                             <div className="user-chat-header-left">
                                 <img
@@ -176,7 +167,7 @@ const Chat = () => {
                                     <span className="user-chat-header-status">Secure Connection Established</span>
                                 </div>
                             </div>
-                            
+
                             <div className="user-chat-header-actions">
                                 <button onClick={() => setIsDeleteModalOpen(true)} className="user-chat-delete-btn" title="Purge Chat History">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -190,7 +181,6 @@ const Chat = () => {
                             </div>
                         </header>
 
-                        {/* Messages Feed */}
                         <div className="user-chat-feed">
                             {isLoadingMessages && messages.length === 0 ? (
                                 <div className="user-chat-state-msg">Decrypting transmissions...</div>
@@ -214,7 +204,6 @@ const Chat = () => {
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Input Area */}
                         <div className="user-chat-input-area">
                             <form onSubmit={handleSendMessage} className="user-chat-form">
                                 <input
@@ -235,7 +224,6 @@ const Chat = () => {
                         </div>
                     </>
                 ) : (
-                    /* Empty State */
                     <div className="user-chat-empty-state">
                         <svg className="user-chat-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -245,11 +233,10 @@ const Chat = () => {
                 )}
             </main>
 
-            {/* --- DELETE CONFIRMATION MODAL --- */}
             {isDeleteModalOpen && (
                 <div className="user-chat-modal-backdrop" onClick={() => setIsDeleteModalOpen(false)}>
                     <div className="user-chat-modal-card" onClick={(e) => e.stopPropagation()}>
-                        
+
                         <div className="user-chat-modal-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="3 6 5 6 21 6"></polyline>
@@ -258,14 +245,14 @@ const Chat = () => {
                                 <line x1="14" y1="11" x2="14" y2="17"></line>
                             </svg>
                         </div>
-                        
+
                         <h2 className="user-chat-modal-title">PURGE_RECORDS?</h2>
                         <p className="user-chat-modal-desc">
                             Are you sure you want to permanently delete all encrypted transmissions with
                             <strong className="user-chat-highlight">{selectedUser?.name}</strong>?
                             This action cannot be reversed.
                         </p>
-                        
+
                         <div className="user-chat-modal-actions">
                             <button className="user-chat-btn-abort" onClick={() => setIsDeleteModalOpen(false)}>
                                 ABORT
