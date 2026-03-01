@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('./controller/userController');
 const blogController = require('./controller/blogController');
 const chatController = require('./controller/chatController');
+const dashboardController = require('./controller/dashboardController');
 const auth = require('./middleware/auth');
 
 router.post('/register', userController.register);
@@ -25,5 +26,7 @@ router.get('/messages/unread', auth, chatController.getTotalUnread);
 router.get('/messages/:targetUserId', auth, chatController.getMessages);
 router.post('/messages', auth, chatController.sendMessage);
 router.delete('/messages/:targetUserId', auth, chatController.deleteChat);
+
+router.get('/dashboard-stats', auth, dashboardController.getDashboardStats);
 
 module.exports = router;
