@@ -23,7 +23,7 @@ import NavigationHandler from './NavigationHandler'
 function App() {
   return (
     <Router>
-      <NavigationHandler />
+      {/* <NavigationHandler /> */}
       <Toaster
         position="top-center"
         toastOptions={{

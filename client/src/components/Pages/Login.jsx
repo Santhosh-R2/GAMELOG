@@ -66,7 +66,7 @@ const Login = () => {
           <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
 
             <div className="login-input-group login-anim-item">
-              <label htmlFor="email" className="login-label">EMAIL ADDRESS // ID</label>
+              <label htmlFor="email" className="login-label">EMAIL ADDRESS </label>
               <div className="login-input-wrapper">
                 <input
                   type="email"
@@ -84,7 +84,7 @@ const Login = () => {
             </div>
 
             <div className="login-input-group login-anim-item">
-              <label htmlFor="password" className="login-label">PASSWORD // KEY</label>
+              <label htmlFor="password" className="login-label">PASSWORD</label>
               <div className="login-input-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
