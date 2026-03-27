@@ -9,7 +9,7 @@ const GAMES_CATALOG = [
     { id: 'skribbl', title: 'Skribbl.io', url: 'https://skribbl.io/' },
     { id: 'vengeio', title: 'Venge.io', url: 'https://venge.io/' },
     { id: 'diepio', title: 'Diep.io', url: 'https://diep.io/' },
-    { id: 'slitherio', title: 'Slither.io', url: 'https://slither.io/' },
+    { id: 'hextris', title: 'Hextris', url: 'https://hextris.io/' },
     { id: 'shellshockers', title: 'Shell Shockers', url: 'https://shellshock.io/' },
     { id: 'moomooio', title: 'MooMoo.io', url: 'https://moomoo.io/' },
     { id: 'gartic', title: 'Gartic.io', url: 'https://gartic.io/' },
