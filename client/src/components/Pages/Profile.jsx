@@ -51,11 +51,11 @@ const Profile = () => {
         const file = e.target.files[0];
         if (file) {
             if (!file.type.startsWith('image/')) {
-                cyberToast('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.', 'error');
+                toast.error('CRITICAL: ONLY IMAGE FILES ARE ALLOWED.');
                 return;
             }
             if (file.size > 5 * 1024 * 1024) {
-                cyberToast('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.', 'error');
+                toast.error('CRITICAL: IMAGE SIZE MUST BE UNDER 5MB.');
                 return;
             }
 
@@ -70,8 +70,20 @@ const Profile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        if (!emailRegex.test(userData.email)) {
+            toast.error('ONLY GMAIL.COM IS ALLOWED.');
+            return;
+        }
+
+        if (!userData.profilePic && !previewImg) {
+            toast.error('SECURITY ERROR: PROFILE PICTURE IS MANDATORY.');
+            return;
+        }
+
         if (userData.phone.length !== 10) {
-            return toast.error('COMM-LINK ERROR: PHONE NUMBER MUST BE 10 DIGITS.');
+            toast.error('COMM-LINK ERROR: PHONE NUMBER MUST BE 10 DIGITS.');
             return;
         }
 
